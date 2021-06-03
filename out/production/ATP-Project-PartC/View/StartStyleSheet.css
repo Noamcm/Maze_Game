@@ -1,0 +1,20 @@
+.root {
+    -fx-background-image: url("../images/back2.jpg");
+    -fx-background-size: cover;
+}
+
+Button {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+Button:hover {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(110,77,16,0.7);
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+}
