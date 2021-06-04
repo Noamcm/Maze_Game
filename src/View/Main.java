@@ -12,16 +12,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("starting.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyView.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("SuperMaze");
         primaryStage.setScene(new Scene(root, 1252, 694));
         primaryStage.show();
 
-        IModel model = new MyModel();
+/*        IModel model = new MyModel();
         MyViewModel viewModel = new MyViewModel(model);
         StartController view = fxmlLoader.getController();
-        view.setViewModel(viewModel);
+        view.setViewModel(viewModel);*/
     }
 
     public static void main(String[] args) {

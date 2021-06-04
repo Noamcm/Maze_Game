@@ -1,9 +1,12 @@
 package View;
 import algorithms.mazeGenerators.*;
+import algorithms.search.AState;
+import algorithms.search.MazeState;
 import algorithms.search.Solution;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -22,6 +25,8 @@ public class MazeDisplayer extends Canvas {
     StringProperty imageFileNameWall = new SimpleStringProperty();
     StringProperty imageFileNameRoad = new SimpleStringProperty();
     StringProperty imageFileNamePlayer = new SimpleStringProperty();
+    StringProperty imageFileNameSol = new SimpleStringProperty();
+
 
 
     public int getPlayerRow() {
@@ -48,6 +53,13 @@ public class MazeDisplayer extends Canvas {
     }
     public void setImageFileNameWall(String imageFileNameWall) {
         this.imageFileNameWall.set(imageFileNameWall);
+    }
+
+    public String getImageFileNameSol() {
+        return imageFileNameSol.get();
+    }
+    public void setImageFileNameSol(String imageFileNameSol) {
+        this.imageFileNameSol.set(imageFileNameSol);
     }
 
 
@@ -92,20 +104,41 @@ public class MazeDisplayer extends Canvas {
     }
 
     private void drawSolution(GraphicsContext graphicsContext, double cellHeight, double cellWidth) {
-        // need to be implemented
-        System.out.println("drawing solution...");
+        Image solImage = null;
+        graphicsContext.setFill(Color.DARKKHAKI);
+        try {
+            solImage = new Image(new FileInputStream(getImageFileNameSol()));
+        } catch (FileNotFoundException e) {
+            System.out.println("There is no solution image file");
+        }
+    for (AState as : solution.getSolutionPath()) {
+        MazeState mazeState = (MazeState)as;
+        Position pos = mazeState.getPosition();
+        double x = pos.getColumnIndex() * cellWidth;
+        double y = pos.getRowIndex() * cellHeight;
+        if (solImage == null) {
+            graphicsContext.fillRect(x, y, cellWidth, cellHeight);
+        }
+        else
+            graphicsContext.drawImage(solImage, x, y, cellWidth, cellHeight);
     }
+
+}
+
 
     private void drawMazeWalls(GraphicsContext graphicsContext, double cellHeight, double cellWidth, int rows, int cols) {
         Image wallImage = null;
         Image roadImage = null;
         try{
             wallImage = new Image(new FileInputStream(getImageFileNameWall()));
-            roadImage = new Image(new FileInputStream(getImageFileNameRoad()));
         } catch (FileNotFoundException e) {
             System.out.println("There is no wall image file");
         }
-
+        try{
+            roadImage = new Image(new FileInputStream(getImageFileNameRoad()));
+        } catch (FileNotFoundException e) {
+            System.out.println("There is no road image file");
+        }
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 double x = j * cellWidth;

@@ -1,15 +1,22 @@
 package View;
 
+import Model.IModel;
+import Model.MyModel;
 import ViewModel.*;
 import algorithms.mazeGenerators.*;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -19,6 +26,8 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 public class StartController implements IView , Initializable , Observer {
+    private Stage stage;
+    private Scene scene;
     FileChooser fileChooser = new FileChooser();
     public MyViewModel viewModel;
     public TextField textField_mazeRows;
@@ -53,13 +62,30 @@ public class StartController implements IView , Initializable , Observer {
         }
         Maze loadedMaze = new Maze(savedMazeBytes);*/
     }
+    public void New(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GenerateMaze.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        stage = new Stage();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        IModel model = new MyModel();
+        //MyViewModel viewModel = new MyViewModel(model);
+        GenerateMazeController view = fxmlLoader.getController();
+        view.setViewModel(viewModel);
+        stage.showAndWait();
+    }
 
-
-    public void Generate(ActionEvent actionEvent){
+/*    public void Generate(ActionEvent actionEvent){
         int rows = Integer.valueOf(textField_mazeRows.getText());
         int cols = Integer.valueOf(textField_mazeColumns.getText());
         viewModel.generateMaze(rows, cols);
-    }
+    }*/
 
 
     @Override
@@ -72,17 +98,17 @@ public class StartController implements IView , Initializable , Observer {
             default -> System.out.println("Not implemented change: " + change);
         }
     }
-    private void mazeSolved() {
-        mazeDisplayer.setSolution(viewModel.getSolution());
-    }
-
-    private void playerMoved() {
-        mazeDisplayer.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol());
-    }
 
     private void mazeGenerated() {
         mazeDisplayer.drawMaze(viewModel.getMaze());
     }
+    private void mazeSolved() {
+        mazeDisplayer.setSolution(viewModel.getSolution());
+    }
+    private void playerMoved() {
+        mazeDisplayer.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol());
+    }
+
 
 
     public void Solve(ActionEvent actionEvent){
@@ -97,4 +123,6 @@ public class StartController implements IView , Initializable , Observer {
     public void mouseClicked(MouseEvent mouseEvent) {
         mazeDisplayer.requestFocus();
     }
+
+
 }

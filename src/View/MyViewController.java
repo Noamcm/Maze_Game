@@ -1,5 +1,7 @@
 package View;
 
+import Model.IModel;
+import Model.MyModel;
 import ViewModel.MyViewModel;
 import javafx.beans.property.*;
 import javafx.event.ActionEvent;
@@ -33,11 +35,18 @@ public class MyViewController implements IView, Initializable, Observer { //NEED
     }
 
     public void handleBtnStart(ActionEvent mouseEvent)throws Exception{
-        root = FXMLLoader.load(getClass().getResource("starting.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("starting.fxml"));
+        Parent root = fxmlLoader.load();
+        //root = FXMLLoader.load(getClass().getResource("starting.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        IModel model = new MyModel();
+        MyViewModel viewModel = new MyViewModel(model);
+        StartController view = fxmlLoader.getController();
+        view.setViewModel(viewModel);
     }
 
     public void setViewModel(MyViewModel viewModel) {
