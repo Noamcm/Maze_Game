@@ -1,5 +1,6 @@
 package View;
 
+import IO.MyDecompressorInputStream;
 import Model.IModel;
 import Model.MyModel;
 import ViewModel.*;
@@ -47,21 +48,13 @@ public class StartController implements IView , Initializable , Observer {
     }
 
     public void Load(ActionEvent actionEvent) {
-/*        FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("Maze Files", "*.maze");
+        FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("Maze Files", "*.maze");
         fileChooser.getExtensionFilters().add(fileExtensions);
         File file = fileChooser.showOpenDialog(new Stage());
-        byte savedMazeBytes[] = new byte[0];
-        try {
-            //read maze from file
-            InputStream in = new MyDecompressorInputStream(new FileInputStream(file));
-            savedMazeBytes = new byte[in.readAllBytes().length];
-            in.read(savedMazeBytes);
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Maze loadedMaze = new Maze(savedMazeBytes);*/
+        viewModel.loadMaze(file);
     }
+
+
     public void New(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GenerateMaze.fxml"));
         Parent root = null;
@@ -125,4 +118,7 @@ public class StartController implements IView , Initializable , Observer {
     }
 
 
+    public void setOnDragDetected(MouseEvent mouseEvent) {
+        viewModel.movePlayer(mouseEvent);
+    }
 }

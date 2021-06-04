@@ -5,9 +5,9 @@ import Model.MovementDirection;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
 import javafx.scene.control.Alert;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.*;
 
+import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -29,7 +29,9 @@ public class MyViewModel extends Observable implements Observer {
         return model.getMaze();
     }
 
-
+    public void loadMaze(File file){
+        model.loadMaze(file);
+    }
 
     public int getPlayerRow(){
         return model.getPlayerRow();
@@ -47,6 +49,22 @@ public class MyViewModel extends Observable implements Observer {
     public void generateMaze(int rows, int cols){
         model.generateMaze(rows, cols);
     }
+/*
+    public void movePlayer(MouseEvent mouseEvent){
+         *//* drag was detected, start drag-and-drop gesture*//*
+            System.out.println("onDragDetected");
+
+            *//* allow any transfer mode *//*
+            Dragboard db = source.startDragAndDrop(TransferMode.ANY);
+
+            *//* put a string on dragboard *//*
+            ClipboardContent content = new ClipboardContent();
+            content.putString(source.getText());
+            db.setContent(content);
+            MouseControlUtil
+            mouseEvent.consume();
+
+    }*/
 
     public void movePlayer(KeyEvent keyEvent){
         MovementDirection direction;
@@ -114,5 +132,7 @@ public class MyViewModel extends Observable implements Observer {
         alert.show();
         model.solveMaze();
     }
+
+
 }
 

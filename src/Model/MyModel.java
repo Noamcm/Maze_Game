@@ -166,6 +166,24 @@ public class MyModel extends Observable implements IModel{
         return solution;
     }
 
+    @Override
+    public void loadMaze(File file) {
+        byte savedMazeBytes[] = new byte[0];
+        try {
+            //read maze from file
+            InputStream in = new MyDecompressorInputStream(new FileInputStream(file));
+            savedMazeBytes = new byte[(int)file.length()*Integer.SIZE];
+            in.read(savedMazeBytes);
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        maze = new Maze(savedMazeBytes);
+        setChanged();
+        notifyObservers("maze generated");
+        // start position:
+        movePlayer(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex());
+    }
 
 
 }

@@ -3,6 +3,7 @@ package Model;
 import algorithms.mazeGenerators.*;
 import algorithms.search.*;
 
+import java.io.File;
 import java.util.Observer;
 
 public interface IModel {
@@ -14,4 +15,5 @@ public interface IModel {
     void assignObserver(Observer o);
     void solveMaze();
     Solution getSolution();
+    void loadMaze(File file);
 }

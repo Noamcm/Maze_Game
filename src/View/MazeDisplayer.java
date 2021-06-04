@@ -25,6 +25,7 @@ public class MazeDisplayer extends Canvas {
     StringProperty imageFileNameWall = new SimpleStringProperty();
     StringProperty imageFileNameRoad = new SimpleStringProperty();
     StringProperty imageFileNamePlayer = new SimpleStringProperty();
+    StringProperty imageFileNameGoal = new SimpleStringProperty();
     StringProperty imageFileNameSol = new SimpleStringProperty();
 
 
@@ -73,9 +74,12 @@ public class MazeDisplayer extends Canvas {
     public String getImageFileNamePlayer() {
         return imageFileNamePlayer.get();
     }
-    public void setImageFileNamePlayer(String imageFileNamePlayer) {
-        this.imageFileNamePlayer.set(imageFileNamePlayer);
+    public void setImageFileNamePlayer(String imageFileNamePlayer) {this.imageFileNamePlayer.set(imageFileNamePlayer); }
+
+    public String getImageFileNameGoal() {
+        return imageFileNameGoal.get();
     }
+    public void setImageFileNameGoal(String imageFileNameGoal) {this.imageFileNameGoal.set(imageFileNameGoal); }
 
     public void drawMaze(Maze maze) {
         this.maze = maze;
@@ -129,6 +133,8 @@ public class MazeDisplayer extends Canvas {
     private void drawMazeWalls(GraphicsContext graphicsContext, double cellHeight, double cellWidth, int rows, int cols) {
         Image wallImage = null;
         Image roadImage = null;
+        Image GoalImage = null;
+
         try{
             wallImage = new Image(new FileInputStream(getImageFileNameWall()));
         } catch (FileNotFoundException e) {
@@ -138,6 +144,11 @@ public class MazeDisplayer extends Canvas {
             roadImage = new Image(new FileInputStream(getImageFileNameRoad()));
         } catch (FileNotFoundException e) {
             System.out.println("There is no road image file");
+        }
+        try{
+            GoalImage = new Image(new FileInputStream(getImageFileNameGoal()));
+        } catch (FileNotFoundException e) {
+            System.out.println("There is no Goal image file");
         }
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -152,7 +163,14 @@ public class MazeDisplayer extends Canvas {
                         graphicsContext.drawImage(wallImage, x, y, cellWidth, cellHeight);
                 }
                 else {
-                    if(roadImage == null){
+                    if (maze.getGoalPosition().equals(new Position(i,j))) {
+                        if (GoalImage == null) {
+                            graphicsContext.setFill(Color.WHITE);
+                            graphicsContext.fillRect(x, y, cellWidth, cellHeight);
+                        } else
+                            graphicsContext.drawImage(GoalImage, x, y, cellWidth, cellHeight);
+                    }
+                    else if(roadImage == null){
                         graphicsContext.setFill(Color.BROWN);
                         graphicsContext.fillRect(x, y, cellWidth, cellHeight);}
                     else

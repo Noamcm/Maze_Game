@@ -9,8 +9,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<!-- -<!- -->
-<?import View.MazeDisplayer?>
+
+<!-- -<?import View.MazeDisplayer?><!- -->
 
 <BorderPane onMouseClicked="#mouseClicked" prefHeight="591.0" prefWidth="1051.0" stylesheets="@StartStyleSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.StartController">
    <left>
@@ -49,9 +49,8 @@
       </MenuBar>
    </top>
    <right>
-      <Pane prefHeight="566.0" prefWidth="807.0" BorderPane.alignment="CENTER">
+      <Pane onDragDetected="#setOnDragDetected" prefHeight="566.0" prefWidth="807.0" BorderPane.alignment="CENTER">
          <children>
-            <MazeDisplayer fx:id="mazeDisplayer" height="418.0" imageFileNamePlayer="./resources/images/pom2.png" imageFileNameRoad="./resources/images/dirt.png" imageFileNameWall="./resources/images/flower.png"  imageFileNameSol="./resources/images/darkdirt.png" onKeyPressed="#keyPressed" width="619.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
