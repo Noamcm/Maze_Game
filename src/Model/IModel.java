@@ -16,4 +16,6 @@ public interface IModel {
     void solveMaze();
     Solution getSolution();
     void loadMaze(File file);
+
+    void saveMaze(File file);
 }

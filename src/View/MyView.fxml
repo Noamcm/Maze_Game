@@ -1,54 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
-   <children>
-      <BorderPane prefHeight="728.0" prefWidth="1267.0">
-         <top>
-            <MenuBar prefHeight="0.0" prefWidth="787.0" BorderPane.alignment="CENTER">
-               <menus>
-                  <Menu mnemonicParsing="false" text="File">
-                     <items>
-                        <MenuItem fx:id="LoadB" mnemonicParsing="false" text="Load" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Options">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Properties" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="About">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Exit">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-         </top>
-         <left>
-            <Button fx:id="startB" mnemonicParsing="false" onAction="#handleBtnStart" prefHeight="200.0" prefWidth="400.0" text="Start" wrapText="true" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="82.0" />
-               </font>
-            </Button>
-         </left>
-      </BorderPane>
-   </children>
-</FlowPane>
+<BorderPane prefHeight="531.0" prefWidth="876.4" stylesheets="@ViewStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+   <top>
+      <MenuBar maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER_LEFT">
+         <menus>
+            <Menu disable="true" mnemonicParsing="false" text="File" />
+            <Menu mnemonicParsing="false" text="Options">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Properties" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help" />
+            <Menu mnemonicParsing="false" text="About" />
+            <Menu mnemonicParsing="false" text="Exit" />
+         </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <Button fx:id="startB" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#handleBtnStart" rotate="-12.7" text="Start" wrapText="true" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Forte" size="82.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="150.0" left="120.0" />
+         </BorderPane.margin>
+      </Button>
+   </left>
+</BorderPane>

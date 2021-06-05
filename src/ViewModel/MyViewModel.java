@@ -49,22 +49,12 @@ public class MyViewModel extends Observable implements Observer {
     public void generateMaze(int rows, int cols){
         model.generateMaze(rows, cols);
     }
-/*
+
+
     public void movePlayer(MouseEvent mouseEvent){
-         *//* drag was detected, start drag-and-drop gesture*//*
-            System.out.println("onDragDetected");
 
-            *//* allow any transfer mode *//*
-            Dragboard db = source.startDragAndDrop(TransferMode.ANY);
 
-            *//* put a string on dragboard *//*
-            ClipboardContent content = new ClipboardContent();
-            content.putString(source.getText());
-            db.setContent(content);
-            MouseControlUtil
-            mouseEvent.consume();
-
-    }*/
+    }
 
     public void movePlayer(KeyEvent keyEvent){
         MovementDirection direction;
@@ -127,12 +117,15 @@ public class MyViewModel extends Observable implements Observer {
     }
 
     public void solveMaze(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+/*        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("Solving maze...");
-        alert.show();
+        alert.show();*/
         model.solveMaze();
     }
 
 
+    public void saveMaze(File file) {
+        model.saveMaze(file);
+    }
 }
 

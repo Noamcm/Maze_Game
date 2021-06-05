@@ -1,5 +1,6 @@
 package Model;
 
+import IO.MyCompressorOutputStream;
 import IO.MyDecompressorInputStream;
 import Server.*;
 import Client.*;
@@ -7,10 +8,7 @@ import java.io.*;
 import java.net.*;
 import algorithms.search.*;
 import algorithms.mazeGenerators.*;
-import javafx.scene.input.KeyEvent;
 
-import java.io.*;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -183,6 +181,19 @@ public class MyModel extends Observable implements IModel{
         notifyObservers("maze generated");
         // start position:
         movePlayer(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex());
+    }
+
+    @Override
+    public void saveMaze(File file) {
+        try {
+            // save maze to a file
+            OutputStream out = new MyCompressorOutputStream(new FileOutputStream(file));
+            out.write(maze.toByteArray());
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

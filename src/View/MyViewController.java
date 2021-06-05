@@ -22,7 +22,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class MyViewController implements IView, Initializable, Observer { //NEED TO COMPARE WITH ROTEM
+public class MyViewController extends AView implements Initializable, Observer { //NEED TO COMPARE WITH ROTEM
     public MyViewModel viewModel;
     private Stage stage;
     private Scene scene;
@@ -41,8 +41,8 @@ public class MyViewController implements IView, Initializable, Observer { //NEED
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        startB.prefWidthProperty().bind(scene.widthProperty().divide(10));
         stage.show();
-
         IModel model = new MyModel();
         MyViewModel viewModel = new MyViewModel(model);
         StartController view = fxmlLoader.getController();
