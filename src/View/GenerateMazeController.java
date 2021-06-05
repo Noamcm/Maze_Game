@@ -33,10 +33,8 @@ public class GenerateMazeController  {
     }
 
     public void Generate(ActionEvent actionEvent){ //check inputs
-        int rows = Integer.valueOf(textField_mazeRows.getText());
-        int cols = Integer.valueOf(textField_mazeColumns.getText());
-        viewModel.generateMaze(rows, cols);
-        Exit(actionEvent);
+        if(viewModel.generateMaze(textField_mazeRows.getText(), textField_mazeColumns.getText()))
+            Exit(actionEvent);
     }
 
 

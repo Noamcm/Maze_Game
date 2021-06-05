@@ -91,14 +91,11 @@ public class MazeDisplayer extends Canvas {
             double canvasWidth = getWidth();
             int rows = maze.getDimensions()[0];
             int cols = maze.getDimensions()[1];
-
             double cellHeight = canvasHeight / rows;
             double cellWidth = canvasWidth / cols;
-
             GraphicsContext graphicsContext = getGraphicsContext2D();
             //clear the canvas:
             graphicsContext.clearRect(0, 0, canvasWidth, canvasHeight);
-
             drawMazeWalls(graphicsContext, cellHeight, cellWidth, rows, cols);
             if(solution != null)
                 drawSolution(graphicsContext, cellHeight, cellWidth);
@@ -114,26 +111,23 @@ public class MazeDisplayer extends Canvas {
         } catch (FileNotFoundException e) {
             System.out.println("There is no solution image file");
         }
-    for (AState as : solution.getSolutionPath()) {
-        MazeState mazeState = (MazeState)as;
-        Position pos = mazeState.getPosition();
-        double x = pos.getColumnIndex() * cellWidth;
-        double y = pos.getRowIndex() * cellHeight;
-        if (solImage == null) {
-            graphicsContext.fillRect(x, y, cellWidth, cellHeight);
+        for (AState as : solution.getSolutionPath()) {
+            MazeState mazeState = (MazeState)as;
+            Position pos = mazeState.getPosition();
+            double x = pos.getColumnIndex() * cellWidth;
+            double y = pos.getRowIndex() * cellHeight;
+            if (solImage == null)
+                graphicsContext.fillRect(x, y, cellWidth, cellHeight);
+            else
+                graphicsContext.drawImage(solImage, x, y, cellWidth, cellHeight);
         }
-        else
-            graphicsContext.drawImage(solImage, x, y, cellWidth, cellHeight);
+        drawGoal(graphicsContext,cellHeight,cellWidth);
     }
-
-}
 
 
     private void drawMazeWalls(GraphicsContext graphicsContext, double cellHeight, double cellWidth, int rows, int cols) {
         Image wallImage = null;
         Image roadImage = null;
-        Image GoalImage = null;
-
         try{
             wallImage = new Image(new FileInputStream(getImageFileNameWall()));
         } catch (FileNotFoundException e) {
@@ -144,16 +138,12 @@ public class MazeDisplayer extends Canvas {
         } catch (FileNotFoundException e) {
             System.out.println("There is no road image file");
         }
-        try{
-            GoalImage = new Image(new FileInputStream(getImageFileNameGoal()));
-        } catch (FileNotFoundException e) {
-            System.out.println("There is no Goal image file");
-        }
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 double x = j * cellWidth;
                 double y = i * cellHeight;
-                if(!maze.isPath(new Position(i,j))){
+                Position current = new Position(i,j);
+                if((!maze.isPath(current))&&(!maze.getGoalPosition().equals(current))){
                     //if it is a wall:
                     if(wallImage == null){
                         graphicsContext.setFill(Color.GREEN);
@@ -162,28 +152,37 @@ public class MazeDisplayer extends Canvas {
                         graphicsContext.drawImage(wallImage, x, y, cellWidth, cellHeight);
                 }
                 else {
-                    if (maze.getGoalPosition().equals(new Position(i,j))) {
-                        if (GoalImage == null) {
-                            graphicsContext.setFill(Color.WHITE);
-                            graphicsContext.fillRect(x, y, cellWidth, cellHeight);
-                        } else
-                            graphicsContext.drawImage(GoalImage, x, y, cellWidth, cellHeight);
-                    }
-                    else if(roadImage == null){
-                        graphicsContext.setFill(Color.BROWN);
-                        graphicsContext.fillRect(x, y, cellWidth, cellHeight);}
+                    if(roadImage == null){
+                    graphicsContext.setFill(Color.BROWN);
+                    graphicsContext.fillRect(x, y, cellWidth, cellHeight);}
                     else
                         graphicsContext.drawImage(roadImage, x, y, cellWidth, cellHeight);
                 }
             }
         }
+        drawGoal(graphicsContext,cellHeight,cellWidth);
+    }
+
+    private void drawGoal(GraphicsContext graphicsContext, double cellHeight, double cellWidth){
+        Image GoalImage = null;
+        try{
+            GoalImage = new Image(new FileInputStream(getImageFileNameGoal()));
+        } catch (FileNotFoundException e) {
+            System.out.println("There is no Goal image file");
+        }
+        double y= maze.getGoalPosition().getRowIndex() * cellHeight;
+        double x= maze.getGoalPosition().getColumnIndex() * cellWidth;
+        if (GoalImage == null) {
+            graphicsContext.setFill(Color.WHITE);
+            graphicsContext.fillRect(x, y, cellWidth, cellHeight);
+        } else
+            graphicsContext.drawImage(GoalImage, x, y, cellWidth, cellHeight);
     }
 
     private void drawPlayer(GraphicsContext graphicsContext, double cellHeight, double cellWidth) {
         double x = getPlayerCol() * cellWidth;
         double y = getPlayerRow() * cellHeight;
         graphicsContext.setFill(Color.PINK);
-
         Image playerImage = null;
         try {
             playerImage = new Image(new FileInputStream(getImageFileNamePlayer()));

@@ -27,7 +27,7 @@ import java.util.*;
 
 import java.io.File;
 
-public abstract class AView implements IView {
+public abstract class AView implements IView , Initializable, Observer {
     protected Stage stage;
     protected Scene scene;
     FileChooser fileChooser = new FileChooser();
@@ -44,6 +44,7 @@ public abstract class AView implements IView {
             viewModel.saveMaze(file);
 
     }
+
 
 
     public void Load(ActionEvent actionEvent) {

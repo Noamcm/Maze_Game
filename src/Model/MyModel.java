@@ -113,7 +113,10 @@ public class MyModel extends Observable implements IModel{
         this.playerRow = row;
         this.playerCol = col;
         setChanged();
-        notifyObservers("player moved");
+        if ((row==maze.getGoalPosition().getRowIndex())&&(col==maze.getGoalPosition().getColumnIndex()))
+            notifyObservers("goal reached");
+        else
+            notifyObservers("player moved");
     }
 
     @Override

@@ -1,10 +1,10 @@
 .root {
-/*    -fx-background-image: url("../images/back2.jpg");
-    -fx-background-size: cover;*/
+    -fx-background-image: url("../images/Solved.png");
+    -fx-background-size: cover;
 }
-
 Button {
-    -fx-text-fill: black;
+    -fx-text-fill:white ;
+    -fx-effect: dropshadow( gaussian , black , 10 , 0.1 , 4 , 4 );
     -fx-font-size: 24px;
     -fx-font-family: "Segoe Print";
     -fx-font-weight: bold;
@@ -12,8 +12,8 @@ Button {
 }
 
 Button:hover {
-    -fx-text-fill: white;
-    -fx-background-color: rgba(110,77,16,0.7);
+    -fx-text-fill: white ;
+    -fx-background-color: rgba(0,0,0,0.1);
     -fx-background-radius: 3px, 3px, 2px, 1px;
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;

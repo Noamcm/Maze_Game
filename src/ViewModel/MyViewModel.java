@@ -4,6 +4,7 @@ import Model.IModel;
 import Model.MovementDirection;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
+import com.sun.javafx.css.FontFaceImpl;
 import javafx.scene.control.Alert;
 import javafx.scene.input.*;
 
@@ -46,8 +47,28 @@ public class MyViewModel extends Observable implements Observer {
         return model.getSolution();
     }
 
-    public void generateMaze(int rows, int cols){
-        model.generateMaze(rows, cols);
+    public boolean generateMaze(String rows, String cols){
+        int int_rows,int_cols;
+        try {
+            int_rows = Integer.parseInt(rows);
+            int_cols = Integer.parseInt(cols);
+        }
+        catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Parameters");
+            alert.setContentText("Please enter numbers!");
+            alert.show();
+            return false;
+        }
+        if ((int_rows > 1) && (int_cols > 1)) {
+            model.generateMaze(int_rows, int_cols);
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please choose valid numbers!");
+            alert.show();
+        }
+        return false;
     }
 
 

@@ -30,26 +30,23 @@ import java.net.URL;
 
 import java.util.*;
 
-public class StartController extends AView implements Initializable , Observer {
+public class StartController extends AView  {
 /*    private Stage stage;
     private Scene scene;*/
     //FileChooser fileChooser = new FileChooser();
     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Maze Files", "*.maze");
    // public MyViewModel viewModel;
-    public TextField textField_mazeRows;
-    public TextField textField_mazeColumns;
     public MazeDisplayer mazeDisplayer;
-    public Label playerRow;
-    public Label playerCol;
     public MediaView media;
     private MediaPlayer mediaPlayer;
     private static final String MEDIA_URL = "../images/backgroundVid.mp4";
+
     public void setViewModel(MyViewModel viewModel) {
         this.viewModel = viewModel;
         this.viewModel.addObserver(this);
     }
 
-    @Override
+        @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mediaPlayer= new MediaPlayer(new Media(this.getClass().getResource(MEDIA_URL).toExternalForm()));
         mediaPlayer.setAutoPlay(true);
@@ -60,6 +57,7 @@ public class StartController extends AView implements Initializable , Observer {
                 mediaPlayer.play();
             }
         });
+        //mediaPlayer.setMute(true); // NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!1
         media.setFitHeight(720); //to change
         media.setFitWidth(1280); //to change
         media.setMediaPlayer(mediaPlayer);

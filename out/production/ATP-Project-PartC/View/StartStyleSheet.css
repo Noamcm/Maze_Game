@@ -5,7 +5,7 @@
 
 Button {
     -fx-text-fill: black;
-    -fx-font-size: 14px;
+    -fx-font-size: 24px;
     -fx-font-family: "Segoe Print";
     -fx-font-weight: bold;
     -fx-background-color: rgba(0,0,0,0);

@@ -22,10 +22,10 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class MyViewController extends AView implements Initializable, Observer { //NEED TO COMPARE WITH ROTEM
+public class MyViewController extends AView { //NEED TO COMPARE WITH ROTEM
     public MyViewModel viewModel;
-    private Stage stage;
-    private Scene scene;
+/*    private Stage stage;
+    private Scene scene;*/
     private Parent root;
     @FXML
     Button startB;
@@ -41,11 +41,11 @@ public class MyViewController extends AView implements Initializable, Observer {
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         scene = new Scene(root,1280, 720);
         stage.setScene(scene);
-        stage.show();
         IModel model = new MyModel();
         MyViewModel viewModel = new MyViewModel(model);
         StartController view = fxmlLoader.getController();
         view.setViewModel(viewModel);
+        stage.show();
     }
 
     public void setViewModel(MyViewModel viewModel) {
