@@ -11,9 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -31,14 +31,12 @@ import java.net.URL;
 import java.util.*;
 
 public class StartController extends AView  {
-/*    private Stage stage;
-    private Scene scene;*/
-    //FileChooser fileChooser = new FileChooser();
     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Maze Files", "*.maze");
-   // public MyViewModel viewModel;
     public MazeDisplayer mazeDisplayer;
     public MediaView media;
     private MediaPlayer mediaPlayer;
+    public Button SolveB;
+    public ToggleButton MuteB;
     private static final String MEDIA_URL = "../images/backgroundVid.mp4";
 
     public void setViewModel(MyViewModel viewModel) {
@@ -57,10 +55,11 @@ public class StartController extends AView  {
                 mediaPlayer.play();
             }
         });
-        //mediaPlayer.setMute(true); // NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO !!!!!!!!!!!!!!!!!!!!!1
         media.setFitHeight(720); //to change
         media.setFitWidth(1280); //to change
         media.setMediaPlayer(mediaPlayer);
+        SolveB.setDisable(true);
+
     }
 
 
@@ -78,6 +77,7 @@ public class StartController extends AView  {
 
     private void mazeGenerated() {
         mazeDisplayer.drawMaze(viewModel.getMaze());
+        SolveB.setDisable(false);
     }
     private void mazeSolved() {
         mazeDisplayer.setSolution(viewModel.getSolution());
@@ -103,5 +103,12 @@ public class StartController extends AView  {
     public void setOnDragDetected(MouseEvent mouseEvent) {
         //viewModel.movePlayer(mouseEvent);
         // TOOOOOOOO DOOOOOOOOOOOOOO **********************************************************************
+    }
+
+    public void Mute(ActionEvent actionEvent) {
+        if(mediaPlayer.isMute())
+            mediaPlayer.setMute(false);
+        else
+            mediaPlayer.setMute(true);
     }
 }

@@ -79,7 +79,6 @@ public class MyViewModel extends Observable implements Observer {
 
     public void movePlayer(KeyEvent keyEvent){
         MovementDirection direction;
-
         switch (keyEvent.getCode()){
             case UP:{
                 direction = MovementDirection.UP;

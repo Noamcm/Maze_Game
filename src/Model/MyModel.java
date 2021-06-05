@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.*;
 import algorithms.search.*;
 import algorithms.mazeGenerators.*;
+import javafx.geometry.Pos;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -72,38 +73,63 @@ public class MyModel extends Observable implements IModel{
 
     @Override
     public void updatePlayerLocation(MovementDirection direction) {
+        Position current;
         switch (direction) {
             case UP -> {
-                if ((playerRow > 0)&&(maze.isPath(new Position(playerRow - 1, playerCol))))
-                    movePlayer(playerRow - 1, playerCol);
+                if (playerRow > 0){
+                    current = new Position(playerRow - 1, playerCol);
+                    if ((maze.isPath(current)||(maze.getGoalPosition().equals(current))))
+                        movePlayer(playerRow - 1, playerCol);
+                }
             }
             case DOWN -> {
-                if ((playerRow < maze.getDimensions()[0] - 1) &&(maze.isPath(new Position(playerRow + 1, playerCol))))
-                    movePlayer(playerRow + 1, playerCol);
+                if (playerRow < maze.getDimensions()[0] - 1){
+                    current =new Position(playerRow + 1, playerCol);
+                     if((maze.isPath(current)||(maze.getGoalPosition().equals(current))))
+                        movePlayer(playerRow + 1, playerCol);
+                }
             }
             case LEFT -> {
-                if ((playerCol > 0)&&(maze.isPath(new Position(playerRow , playerCol- 1))))
-                    movePlayer(playerRow, playerCol - 1);
+                if (playerCol > 0){
+                    current =new Position(playerRow , playerCol-1);
+                    if((maze.isPath(current)||(maze.getGoalPosition().equals(current))))
+                        movePlayer(playerRow, playerCol - 1);
+                }
             }
             case RIGHT -> {
-                if ((playerCol < maze.getDimensions()[1] - 1)&&(maze.isPath(new Position(playerRow , playerCol+ 1))))
-                    movePlayer(playerRow, playerCol + 1);
+                if (playerCol < maze.getDimensions()[1] - 1){
+                    current =new Position(playerRow , playerCol+ 1);
+                    if((maze.isPath(current)||(maze.getGoalPosition().equals(current))))
+                        movePlayer(playerRow, playerCol + 1);
+                }
             }
             case UPRIGHT -> {
-                if ((playerRow > 0) && (playerCol<maze.getDimensions()[1] - 1)&&(maze.isPath(new Position(playerRow - 1, playerCol+1))))
-                    movePlayer(playerRow - 1, playerCol+1);
+                if ((playerRow > 0) && (playerCol<maze.getDimensions()[1] - 1)) {
+                    current = new Position(playerRow - 1, playerCol + 1);
+                    if ((maze.isPath(current) || (maze.getGoalPosition().equals(current))))
+                        movePlayer(playerRow - 1, playerCol + 1);
+                }
             }
             case UPLEFT -> {
-                if ((playerRow > 0) && (playerCol>0)&&(maze.isPath(new Position(playerRow - 1, playerCol-1))))
-                    movePlayer(playerRow - 1, playerCol - 1);
+                if ((playerRow > 0) && (playerCol>0)) {
+                    current = new Position(playerRow - 1, playerCol - 1);
+                    if ((maze.isPath(current) || (maze.getGoalPosition().equals(current))))
+                        movePlayer(playerRow - 1, playerCol - 1);
+                }
             }
             case DOWNRIGHT -> {
-                if ((playerRow < maze.getDimensions()[0] - 1)&&(playerCol < maze.getDimensions()[1] - 1)&&(maze.isPath(new Position(playerRow + 1, playerCol+1))))
+                if ((playerRow < maze.getDimensions()[0] - 1)&&(playerCol < maze.getDimensions()[1] - 1)) {
+                    current = new Position(playerRow + 1, playerCol + 1);
+                    if((maze.isPath(current) || (maze.getGoalPosition().equals(current))))
                     movePlayer(playerRow + 1, playerCol + 1);
+                }
             }
             case DOWNLEFT -> {
-                if ((playerRow < maze.getDimensions()[0] - 1)&&(playerCol > 0)&&(maze.isPath(new Position(playerRow + 1, playerCol-1))))
-                    movePlayer(playerRow + 1, playerCol - 1);
+                if ((playerRow < maze.getDimensions()[0] - 1)&&(playerCol > 0)){
+                    current =new Position(playerRow+1 , playerCol- 1);
+                    if((maze.isPath(current)||(maze.getGoalPosition().equals(current))))
+                        movePlayer(playerRow + 1, playerCol - 1);
+                }
             }
         }
 
