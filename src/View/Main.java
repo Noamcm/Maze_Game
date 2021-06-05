@@ -15,7 +15,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyView.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("SuperMaze");
-        primaryStage.setScene(new Scene(root, 1234, 674));
+        primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.show();
 
 /*        IModel model = new MyModel();

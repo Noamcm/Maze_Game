@@ -63,7 +63,6 @@ public class MazeDisplayer extends Canvas {
         this.imageFileNameSol.set(imageFileNameSol);
     }
 
-
     public String getImageFileNameRoad() {
         return imageFileNameRoad.get();
     }

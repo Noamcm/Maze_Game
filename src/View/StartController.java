@@ -17,12 +17,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.net.URL;
+
 import java.util.*;
 
 public class StartController extends AView implements Initializable , Observer {
@@ -36,7 +41,9 @@ public class StartController extends AView implements Initializable , Observer {
     public MazeDisplayer mazeDisplayer;
     public Label playerRow;
     public Label playerCol;
-
+    public MediaView media;
+    private MediaPlayer mediaPlayer;
+    private static final String MEDIA_URL = "../images/backgroundVid.mp4";
     public void setViewModel(MyViewModel viewModel) {
         this.viewModel = viewModel;
         this.viewModel.addObserver(this);
@@ -44,7 +51,18 @@ public class StartController extends AView implements Initializable , Observer {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        mediaPlayer= new MediaPlayer(new Media(this.getClass().getResource(MEDIA_URL).toExternalForm()));
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer.seek(Duration.ZERO);
+                mediaPlayer.play();
+            }
+        });
+        media.setFitHeight(720); //to change
+        media.setFitWidth(1280); //to change
+        media.setMediaPlayer(mediaPlayer);
     }
 
 

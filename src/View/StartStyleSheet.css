@@ -1,6 +1,6 @@
 .root {
-    -fx-background-image: url("../images/back2.jpg");
-    -fx-background-size: cover;
+/*    -fx-background-image: url("../images/back2.jpg");
+    -fx-background-size: cover;*/
 }
 
 Button {

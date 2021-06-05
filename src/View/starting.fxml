@@ -6,56 +6,73 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-
-<!-- -(  ) <!- -->
+<?import javafx.scene.media.MediaView?>
 <?import View.MazeDisplayer?>
-<BorderPane onMouseClicked="#mouseClicked" prefHeight="591.0" prefWidth="1051.0" stylesheets="@StartStyleSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.StartController">
-   <left>
-      <VBox alignment="CENTER" prefHeight="566.0" prefWidth="116.0" spacing="5.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button cancelButton="true" onAction="#Solve" text="Solve Maze" />
-            <Label text="Player Row = " />
-            <Label text="Player Col = " />
-            <Label fx:id="playerRow" />
-            <Label fx:id="playerCol" />
-         </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </VBox>
-   </left>
-   <top>
-      <MenuBar prefHeight="0.0" prefWidth="518.0" BorderPane.alignment="CENTER">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem fx:id="NewFile" mnemonicParsing="false" onAction="#New" text="New" />
-                  <MenuItem fx:id="LoadFile" mnemonicParsing="false" onAction="#Load" text="Load" />
-                  <MenuItem fx:id="SaveFile" mnemonicParsing="false" onAction="#Save" text="Save" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Options">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Properties" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help" />
-            <Menu mnemonicParsing="false" text="About" />
-            <Menu mnemonicParsing="false" text="Exit" />
-         </menus>
-      </MenuBar>
-   </top>
-   <right>
-      <Pane fx:id="Pane" onDragDetected="#setOnDragDetected" prefHeight="566.0" prefWidth="1036.0" BorderPane.alignment="CENTER">
-         <children>
-            <MazeDisplayer fx:id="mazeDisplayer" height="418.0" imageFileNamePlayer="./resources/images/pom.png" imageFileNameRoad="./resources/images/dirt.png" imageFileNameWall="./resources/images/flower.png"  imageFileNameSol="./resources/images/darkdirt.png" imageFileNameGoal="./resources/images/pom2.png" onKeyPressed="#keyPressed" width="619.0" />
-         </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Pane>
-   </right>
-</BorderPane>
+
+<!-- -<?import View.MazeDisplayer?><!- -->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@StartStyleSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.StartController">
+   <children>
+      <MediaView fx:id="media" fitHeight="375.0" fitWidth="600.0" AnchorPane.bottomAnchor="0.0" />
+      <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClicked" stylesheets="@StartStyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <MenuBar prefHeight="0.0" prefWidth="518.0" BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem fx:id="NewFile" mnemonicParsing="false" onAction="#New" text="New" />
+                        <MenuItem fx:id="LoadFile" mnemonicParsing="false" onAction="#Load" text="Load" />
+                        <MenuItem fx:id="SaveFile" mnemonicParsing="false" text="Save" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Options">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Properties" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help" />
+                  <Menu mnemonicParsing="false" text="About" />
+                  <Menu mnemonicParsing="false" text="Exit" />
+               </menus>
+            </MenuBar>
+         </top>
+         <center>
+         </center>
+         <right>
+            <VBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button cancelButton="true" onAction="#Solve" text="Solve Maze" />
+                  <Label text="Player Row = " />
+                  <Label text="Player Col = " />
+                  <Label fx:id="playerRow" />
+                  <Label fx:id="playerCol" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </right>
+         <left>
+            <VBox alignment="CENTER" minWidth="106.0" spacing="5.0" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </left>
+         <center>
+            <Pane fx:id="Pane" onDragDetected="#setOnDragDetected" BorderPane.alignment="CENTER">
+               <children>
+                  <MazeDisplayer fx:id="mazeDisplayer" height="650" imageFileNameGoal="./resources/images/pom2.png" imageFileNamePlayer="./resources/images/pom.png" imageFileNameRoad="./resources/images/dirt.png" imageFileNameSol="./resources/images/darkdirt.png" imageFileNameWall="./resources/images/flower.png" onKeyPressed="#keyPressed" width="1000" />
+               </children>
+               <padding>
+                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+              </padding>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -28,8 +28,8 @@ import java.util.*;
 import java.io.File;
 
 public abstract class AView implements IView {
-    private Stage stage;
-    private Scene scene;
+    protected Stage stage;
+    protected Scene scene;
     FileChooser fileChooser = new FileChooser();
     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Maze Files", "*.maze");
     public MyViewModel viewModel;

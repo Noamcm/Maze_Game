@@ -39,9 +39,8 @@ public class MyViewController extends AView implements Initializable, Observer {
         Parent root = fxmlLoader.load();
         //root = FXMLLoader.load(getClass().getResource("starting.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        scene = new Scene(root,1280, 720);
         stage.setScene(scene);
-        startB.prefWidthProperty().bind(scene.widthProperty().divide(10));
         stage.show();
         IModel model = new MyModel();
         MyViewModel viewModel = new MyViewModel(model);

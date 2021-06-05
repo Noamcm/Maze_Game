@@ -1,12 +1,12 @@
 .root {
-    -fx-background-image: url("../images/back2.jpg");
-    -fx-background-size: cover;
+/*    -fx-background-image: url("../images/back2.jpg");
+    -fx-background-size: cover;*/
 }
 
 Button {
     -fx-text-fill: black;
     -fx-font-size: 14px;
-    -fx-font-family: "Arial Narrow";
+    -fx-font-family: "Segoe Print";
     -fx-font-weight: bold;
     -fx-background-color: rgba(0,0,0,0);
 }
