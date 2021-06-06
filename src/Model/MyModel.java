@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Properties;
 
 public class MyModel extends Observable implements IModel{
     private Maze maze;
@@ -20,6 +21,7 @@ public class MyModel extends Observable implements IModel{
     private Solution solution;
     private ServerStrategyGenerateMaze generator;
     private ServerStrategySolveSearchProblem solver;
+    private Configurations config;
     //private MazeGenerator generator;
 //    public AMazeGenerator generator;
 
@@ -225,5 +227,16 @@ public class MyModel extends Observable implements IModel{
         }
     }
 
+    @Override
+    public void changeProp(int num_threads, String genAlgo, String solAlgo) {
+        config.writeThreadPoolSize(String.valueOf(num_threads));
+        config.writeMazeGeneratingAlgorithm(genAlgo);
+        config.writeMazeSearchingAlgorithm(solAlgo);
+    }
 
+    @Override
+    public String[] getProp() {
+        String[] PropertiesArray = {config.readThreadPoolSize(),config.readMazeGeneratingAlgorithm(), config.readMazeSearchingAlgorithm()};
+        return PropertiesArray;
+    }
 }

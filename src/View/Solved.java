@@ -25,8 +25,8 @@ public class Solved extends AView {
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         scene = new Scene(root,1280, 720);
         stage.setScene(scene);
-        IModel model = new MyModel();
-        MyViewModel viewModel = new MyViewModel(model);
+//        IModel model = new MyModel();
+//        MyViewModel viewModel = new MyViewModel(model);
         MyViewController view = fxmlLoader.getController();
         view.setViewModel(viewModel);
         stage.show();

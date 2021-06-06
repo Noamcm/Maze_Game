@@ -1,27 +1,18 @@
 package View;
 
-import IO.MyDecompressorInputStream;
-import Model.IModel;
-import Model.MyModel;
 import ViewModel.*;
-import algorithms.mazeGenerators.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -34,15 +25,11 @@ public class StartController extends AView  {
     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Maze Files", "*.maze");
     public MazeDisplayer mazeDisplayer;
     public MediaView media;
-    private MediaPlayer mediaPlayer;
+    public MediaPlayer mediaPlayer;
     public Button SolveB;
     public ToggleButton MuteB;
-    private static final String MEDIA_URL = "../images/backgroundVid.mp4";
+    public static final String MEDIA_URL = "../images/backgroundVid.mp4";
 
-    public void setViewModel(MyViewModel viewModel) {
-        this.viewModel = viewModel;
-        this.viewModel.addObserver(this);
-    }
 
         @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,11 +42,11 @@ public class StartController extends AView  {
                 mediaPlayer.play();
             }
         });
+        media.setMediaPlayer(mediaPlayer);
         media.setFitHeight(720); //to change
         media.setFitWidth(1280); //to change
-        media.setMediaPlayer(mediaPlayer);
+        media.setSmooth(true);
         SolveB.setDisable(true);
-
     }
 
 
@@ -111,4 +98,6 @@ public class StartController extends AView  {
         else
             mediaPlayer.setMute(true);
     }
+
+
 }

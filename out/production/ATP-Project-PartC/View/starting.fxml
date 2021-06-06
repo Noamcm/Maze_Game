@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 <?import View.MazeDisplayer?>
+
 <!-- -<!- -->
 
-<?import javafx.scene.layout.Pane?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ToggleButton?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1234.0" stylesheets="@StartStyleSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.StartController">
+<AnchorPane prefHeight="720" prefWidth="1080.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@StartStyleSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.StartController">
    <children>
-      <MediaView fx:id="media" fitHeight="375.0" fitWidth="600.0" AnchorPane.bottomAnchor="0.0" />
+      <MediaView fx:id="media" fitHeight="720.0" fitWidth="1080.0" AnchorPane.bottomAnchor="0.0" />
       <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClicked" stylesheets="@StartStyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <MenuBar prefHeight="0.0" prefWidth="518.0" BorderPane.alignment="CENTER">
@@ -26,12 +27,12 @@
                      <items>
                         <MenuItem fx:id="NewFile" mnemonicParsing="false" onAction="#New" text="New" />
                         <MenuItem fx:id="LoadFile" mnemonicParsing="false" onAction="#Load" text="Load" />
-                        <MenuItem fx:id="SaveFile" mnemonicParsing="false" text="Save" />
+                        <MenuItem fx:id="SaveFile" mnemonicParsing="false" onAction="#Save" text="Save" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Options">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Properties" />
+                        <MenuItem  fx:id="Properties" mnemonicParsing="false" onAction="#OpenProperties"  text="Properties" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help" />
@@ -45,7 +46,7 @@
          <center>
             <Pane fx:id="Pane" onDragDetected="#setOnDragDetected" BorderPane.alignment="CENTER">
                <children>
-                  <MazeDisplayer fx:id="mazeDisplayer" height="675" width="1000" imageFileNameGoal="./resources/images/JessieNoBackground.png" imageFileNamePlayer="./resources/images/MapleNoBackground.png" imageFileNameRoad="./resources/images/dirt.png" imageFileNameSol="./resources/images/darkdirt.png" imageFileNameWall="./resources/images/flower.png" onKeyPressed="#keyPressed" />
+                  <MazeDisplayer fx:id="mazeDisplayer" height="675" imageFileNameGoal="./resources/images/JessieNoBackground.png" imageFileNamePlayer="./resources/images/MapleNoBackground.png" imageFileNameRoad="./resources/images/dirt.png" imageFileNameSol="./resources/images/darkdirt.png" imageFileNameWall="./resources/images/flower.png" onKeyPressed="#keyPressed" width="1000" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -53,13 +54,16 @@
             </Pane>
          </center>
          <right>
-            <TilePane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TilePane prefHeight="-Infinity" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ToggleButton fx:id="MuteB" TilePane.alignment="TOP_CENTER" contentDisplay="TOP" onAction="#Mute"/>
-                  <Button fx:id="SolveB" TilePane.alignment="BOTTOM_CENTER" cancelButton="true" contentDisplay="BOTTOM" onAction="#Solve" text="Solve Maze">
+                  <ToggleButton fx:id="MuteB" contentDisplay="TOP" onAction="#Mute" TilePane.alignment="TOP_CENTER" />
+                  <Button fx:id="SolveB" cancelButton="true" contentDisplay="BOTTOM" onAction="#Solve" text="Solve Maze" TilePane.alignment="BOTTOM_CENTER">
                      <font>
                         <Font size="36.0" />
                      </font>
+                     <TilePane.margin>
+                        <Insets top="80.0" />
+                     </TilePane.margin>
                   </Button>
                </children>
             </TilePane>

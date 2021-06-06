@@ -1,7 +1,8 @@
 package View;
 
-import Model.*;
-import ViewModel.*;
+import Model.IModel;
+import Model.MyModel;
+import ViewModel.MyViewModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,12 +17,11 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("SuperMaze");
         primaryStage.setScene(new Scene(root, 1280, 720));
-        primaryStage.show();
-
-/*        IModel model = new MyModel();
+        IModel model = new MyModel();
         MyViewModel viewModel = new MyViewModel(model);
-        StartController view = fxmlLoader.getController();
-        view.setViewModel(viewModel);*/
+        MyViewController view = fxmlLoader.getController();
+        view.setViewModel(viewModel);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

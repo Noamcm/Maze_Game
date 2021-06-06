@@ -15,7 +15,7 @@
             <Menu disable="true" mnemonicParsing="false" text="File" />
             <Menu mnemonicParsing="false" text="Options">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Properties" />
+                  <MenuItem  fx:id="Properties" mnemonicParsing="false" onAction="#OpenProperties"  text="Properties" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Help" />

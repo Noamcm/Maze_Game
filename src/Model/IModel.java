@@ -18,4 +18,8 @@ public interface IModel {
     void loadMaze(File file);
 
     void saveMaze(File file);
+
+    void changeProp(int num_threads, String genAlgo, String solAlgo);
+
+    String[] getProp();
 }

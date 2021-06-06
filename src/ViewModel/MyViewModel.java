@@ -147,5 +147,35 @@ public class MyViewModel extends Observable implements Observer {
     public void saveMaze(File file) {
         model.saveMaze(file);
     }
+
+    public boolean changeProp(String threads, Object MazeGenAlgo, Object MazeSolveAlgo) {
+        int num_threads;
+        String genAlgo,SolAlgo;
+        try {
+            num_threads = Integer.parseInt(threads);
+            genAlgo = (String)MazeGenAlgo;
+            SolAlgo = (String)MazeSolveAlgo;
+        }
+        catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Parameters");
+            alert.setContentText("Please enter threads number!");
+            alert.show();
+            return false;
+        }
+        if (num_threads > 1) {
+            model.changeProp(num_threads, genAlgo, SolAlgo);
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Please choose positive number of threads!");
+            alert.show();
+        }
+        return false;
+    }
+
+    public String[] getProp() {
+        return model.getProp();
+    }
 }
 
