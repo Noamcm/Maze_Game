@@ -34,6 +34,7 @@ public class MyViewController extends AView { //NEED TO COMPARE WITH ROTEM
         IModel model = new MyModel();
         MyViewModel viewModel = new MyViewModel(model);
         StartController view = fxmlLoader.getController();
+        view.setStage(stage);
         view.setViewModel(viewModel);
         stage.show();
     }

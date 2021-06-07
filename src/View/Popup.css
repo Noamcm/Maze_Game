@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("../images/popup.jpg");
+    -fx-background-image: url("/images/popup.jpg");
     -fx-background-size: cover;
 }
 Label {

@@ -1,6 +1,5 @@
 package View;
 
-import ViewModel.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -28,6 +27,7 @@ public class StartController extends AView  {
     public MediaPlayer mediaPlayer;
     public Button SolveB;
     public ToggleButton MuteB;
+    public MenuItem SaveFile;
     public static final String MEDIA_URL = "../images/backgroundVid.mp4";
 
 
@@ -62,9 +62,27 @@ public class StartController extends AView  {
         }
     }
 
+    private void goalReached() {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Solved.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        stage=(Stage)((Node)mazeDisplayer).getScene().getWindow();
+        scene = new Scene(root,1280, 720);
+        stage.setScene(scene);
+        mediaPlayer.stop();
+        stage.show();
+    }
+
     private void mazeGenerated() {
         mazeDisplayer.drawMaze(viewModel.getMaze());
         SolveB.setDisable(false);
+        SaveFile.setDisable(false);
     }
     private void mazeSolved() {
         mazeDisplayer.setSolution(viewModel.getSolution());

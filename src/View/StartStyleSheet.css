@@ -21,12 +21,12 @@ Button:hover {
     -fx-content-display: LEFT;
 }
 .toggle-button {
-    -fx-graphic: url("../images/muted.png");
+    -fx-graphic: url("../images/unmuted.png");
     -fx-background-color: rgba(0,0,0,0);
 
 }
 
 .toggle-button:selected {
-    -fx-graphic: url("../images/unmuted.png");
+    -fx-graphic: url("../images/muted.png");
     -fx-background-color: rgba(0,0,0,0);
 }

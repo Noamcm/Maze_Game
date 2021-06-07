@@ -27,7 +27,7 @@
                      <items>
                         <MenuItem fx:id="NewFile" mnemonicParsing="false" onAction="#New" text="New" />
                         <MenuItem fx:id="LoadFile" mnemonicParsing="false" onAction="#Load" text="Load" />
-                        <MenuItem fx:id="SaveFile" mnemonicParsing="false" onAction="#Save" text="Save" />
+                        <MenuItem disable="true" fx:id="SaveFile" mnemonicParsing="false" onAction="#Save" text="Save" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Options">
@@ -35,9 +35,17 @@
                         <MenuItem  fx:id="Properties" mnemonicParsing="false" onAction="#OpenProperties"  text="Properties" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Help" />
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#OpenHelp" text="Open Help" />
+                     </items>
+                  </Menu>
                   <Menu mnemonicParsing="false" text="About" />
-                  <Menu mnemonicParsing="false" text="Exit" />
+                  <Menu mnemonicParsing="false" text="Exit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#CloseEvent" text="Exit The Game" />
+                     </items>
+                  </Menu>
                </menus>
             </MenuBar>
          </top>
@@ -57,7 +65,7 @@
             <TilePane prefHeight="-Infinity" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <ToggleButton fx:id="MuteB" contentDisplay="TOP" onAction="#Mute" TilePane.alignment="TOP_CENTER" />
-                  <Button fx:id="SolveB" cancelButton="true" contentDisplay="BOTTOM" onAction="#Solve" text="Solve Maze" TilePane.alignment="BOTTOM_CENTER">
+                  <Button fx:id="SolveB" cancelButton="true" contentDisplay="BOTTOM" onAction="#Solve" text="Solve Maze / Hide" TilePane.alignment="BOTTOM_CENTER">
                      <font>
                         <Font size="36.0" />
                      </font>

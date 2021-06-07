@@ -21,6 +21,7 @@ public class MazeDisplayer extends Canvas {
     // player position:
     private int playerRow;
     private int playerCol;
+    private static boolean SolutionDrawn=false;
     // wall and player images:
     StringProperty imageFileNameWall = new SimpleStringProperty();
     StringProperty imageFileNameRoad = new SimpleStringProperty();
@@ -104,10 +105,18 @@ public class MazeDisplayer extends Canvas {
     }
 
     private void drawSolution(GraphicsContext graphicsContext, double cellHeight, double cellWidth) {
+        /// TODO: 07/06/2021 DOESNT WORK! 
         Image solImage = null;
         graphicsContext.setFill(Color.DARKKHAKI);
         try {
-            solImage = new Image(new FileInputStream(getImageFileNameSol()));
+            if (SolutionDrawn){
+                solImage = new Image(new FileInputStream(getImageFileNameRoad()));
+                SolutionDrawn=false;
+            }
+            else{
+                solImage = new Image(new FileInputStream(getImageFileNameSol()));
+                SolutionDrawn=true;
+            }
         } catch (FileNotFoundException e) {
             System.out.println("There is no solution image file");
         }

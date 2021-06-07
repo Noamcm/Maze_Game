@@ -31,7 +31,8 @@ public class MyViewModel extends Observable implements Observer {
     }
 
     public void loadMaze(File file){
-        model.loadMaze(file);
+        if (file!=null)
+            model.loadMaze(file);
     }
 
     public int getPlayerRow(){

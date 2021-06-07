@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -20,11 +21,16 @@ public class Main extends Application {
         IModel model = new MyModel();
         MyViewModel viewModel = new MyViewModel(model);
         MyViewController view = fxmlLoader.getController();
+        view.setStage(primaryStage);
         view.setViewModel(viewModel);
+        //primaryStage.getIcons().add(new Image("../images/pawprints.png"));
+        primaryStage.getIcons().add(new Image("/images/pawprints.png"));
         primaryStage.show();
+        primaryStage.setOnCloseRequest(e->view.CloseEvent());
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 }
+

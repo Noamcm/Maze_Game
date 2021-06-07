@@ -15,12 +15,21 @@
             <Menu disable="true" mnemonicParsing="false" text="File" />
             <Menu mnemonicParsing="false" text="Options">
                <items>
-                  <MenuItem  fx:id="Properties" mnemonicParsing="false" onAction="#OpenProperties"  text="Properties" />
+                  <MenuItem fx:id="Properties" mnemonicParsing="false" onAction="#OpenProperties" text="Properties" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Help" />
-            <Menu mnemonicParsing="false" text="About" />
-            <Menu mnemonicParsing="false" text="Exit" />
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#OpenHelp" text="Open Help" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="About">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Open About" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Exit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#CloseEvent" text="Exit The Game" />
+               </items></Menu>
          </menus>
       </MenuBar>
    </top>
