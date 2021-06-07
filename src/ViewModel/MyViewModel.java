@@ -73,11 +73,6 @@ public class MyViewModel extends Observable implements Observer {
     }
 
 
-    public void movePlayer(MouseEvent mouseEvent){
-
-
-    }
-
     public void movePlayer(KeyEvent keyEvent){
         MovementDirection direction;
         switch (keyEvent.getCode()){
@@ -177,6 +172,11 @@ public class MyViewModel extends Observable implements Observer {
 
     public String[] getProp() {
         return model.getProp();
+    }
+
+    public void DragPlayer(int indexX, int indexY) {
+        System.out.println("x: " + indexX);
+        System.out.println("y: " + indexY);
     }
 }
 

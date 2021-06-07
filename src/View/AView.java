@@ -134,7 +134,7 @@ public abstract class AView implements IView , Initializable, Observer {
         }
     }
 
-   /* public void MouseScrolling(MouseEvent mouseEvent) {
+/*    public void MouseScrolling(MouseEvent mouseEvent) {   //ZOOM
         if (mouseEvent.isControlDown()) {
             mouseEvent.consume();
         }

@@ -21,6 +21,8 @@ public class MazeDisplayer extends Canvas {
     // player position:
     private int playerRow;
     private int playerCol;
+    private int cellWidth;
+    private int cellHeight;
     private static boolean SolutionDrawn=false;
     // wall and player images:
     StringProperty imageFileNameWall = new SimpleStringProperty();
@@ -29,7 +31,13 @@ public class MazeDisplayer extends Canvas {
     StringProperty imageFileNameGoal = new SimpleStringProperty();
     StringProperty imageFileNameSol = new SimpleStringProperty();
 
+    public int getCellWidth() {
+        return cellWidth;
+    }
 
+    public int getCellHeight() {
+        return cellHeight;
+    }
 
     public int getPlayerRow() {
         return playerRow;

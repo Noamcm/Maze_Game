@@ -1,12 +1,14 @@
 package View;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -15,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.crypto.spec.PSource;
 import java.io.*;
 import java.net.URL;
 
@@ -106,9 +109,86 @@ public class StartController extends AView  {
 
 
     public void setOnDragDetected(MouseEvent mouseEvent) {
-        //viewModel.movePlayer(mouseEvent);
-        // TOOOOOOOO DOOOOOOOOOOOOOO **********************************************************************
-    }
+/*        if (!SolveB.isDisable())
+        {
+            int indexX = (int)(mouseEvent.getX()/mazeDisplayer.getCellWidth());
+            int indexY = (int)(mouseEvent.getY()/mazeDisplayer.getCellHeight());
+            viewModel.DragPlayer(indexX,indexY);
+            mazeDisplayer.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol());
+        }*/
+
+
+
+        mazeDisplayer.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
+            public void handle(MouseEvent event)
+            {
+                mazeDisplayer.setMouseTransparent(true);
+                System.out.println("Event on Source: mouse pressed");
+                event.setDragDetect(true);
+            }
+        });
+
+        mazeDisplayer.setOnMouseReleased(new EventHandler <MouseEvent>()
+        {
+            public void handle(MouseEvent event)
+            {
+                mazeDisplayer.setMouseTransparent(false);
+                System.out.println("Event on Source: mouse released");
+            }
+        });
+
+        mazeDisplayer.setOnMouseDragged(new EventHandler <MouseEvent>()
+        {
+            public void handle(MouseEvent event)
+            {
+                System.out.println("Event on Source: "+ "x:  " +event.getScreenX() +"Y:  " +event.getScreenY());
+                event.setDragDetect(false);
+            }
+        });
+
+        mazeDisplayer.setOnDragDetected(new EventHandler <MouseEvent>()
+        {
+            public void handle(MouseEvent event)
+            {
+                mazeDisplayer.startFullDrag();
+                System.out.println("Event on Source: drag detected");
+            }
+        });
+
+        // Add mouse event handlers for the target
+        mazeDisplayer.setOnMouseDragEntered(new EventHandler <MouseDragEvent>()
+        {
+            public void handle(MouseDragEvent event)
+            {
+                System.out.println("Event on Target: mouse dragged");
+            }
+        });
+
+        mazeDisplayer.setOnMouseDragOver(new EventHandler <MouseDragEvent>()
+        {
+            public void handle(MouseDragEvent event)
+            {
+                System.out.println("Event on Target: mouse drag over");
+            }
+        });
+
+        mazeDisplayer.setOnMouseDragReleased(new EventHandler <MouseDragEvent>()
+        {
+            public void handle(MouseDragEvent event)
+            {
+                System.out.println("Event on Target: mouse drag released");
+            }
+        });
+
+        mazeDisplayer.setOnMouseDragExited(new EventHandler <MouseDragEvent>()
+        {
+            public void handle(MouseDragEvent event)
+            {
+                System.out.println("Event on Target: mouse drag exited");
+            }
+        });
+        }
 
     public void Mute(ActionEvent actionEvent) {
         if(mediaPlayer.isMute())
