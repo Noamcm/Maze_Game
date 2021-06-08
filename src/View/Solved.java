@@ -9,6 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import java.net.URL;
@@ -18,6 +21,8 @@ import java.util.ResourceBundle;
 public class Solved extends AView {
     private static final String MEDIA_URL = "../images/SolvedSound.mp3";
     public Button BackB;
+    public AnchorPane thisPane;
+
 
     public void BackButton(ActionEvent mouseEvent)throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyView.fxml"));
@@ -40,5 +45,10 @@ public class Solved extends AView {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AudioClip winning = new AudioClip(this.getClass().getResource(MEDIA_URL).toExternalForm());
         winning.play();
+        thisPane.scaleXProperty().bind(myScale);
+        thisPane.scaleYProperty().bind(myScale);
+    }
+    public void MouseScrolling(ScrollEvent event) {
+        HandleScroll(event, thisPane);
     }
 }

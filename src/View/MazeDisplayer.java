@@ -10,7 +10,9 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Scale;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,6 +31,7 @@ public class MazeDisplayer extends Canvas {
     StringProperty imageFileNameRoad = new SimpleStringProperty();
     StringProperty imageFileNamePlayer = new SimpleStringProperty();
     StringProperty imageFileNameGoal = new SimpleStringProperty();
+    StringProperty imageFileNameStart = new SimpleStringProperty();
     StringProperty imageFileNameSol = new SimpleStringProperty();
 
     public int getCellWidth() {
@@ -83,6 +86,12 @@ public class MazeDisplayer extends Canvas {
         this.imageFileNameRoad.set(imageFileNameRoad);
     }
 
+    public String getImageFileNameStart() {
+        return imageFileNameStart.get();
+    }
+    public void setImageFileNameStart(String imageFileNameStart) {
+        this.imageFileNameStart.set(imageFileNameStart);
+    }
     public String getImageFileNamePlayer() {
         return imageFileNamePlayer.get();
     }
@@ -95,6 +104,7 @@ public class MazeDisplayer extends Canvas {
 
     public void drawMaze(Maze newMaze) {
         this.maze = newMaze;
+        this.solution=null;
         draw();
     }
 
@@ -182,10 +192,16 @@ public class MazeDisplayer extends Canvas {
 
     private void drawGoal(GraphicsContext graphicsContext, double cellHeight, double cellWidth){
         Image GoalImage = null;
+        Image StartImage = null;
         try{
             GoalImage = new Image(new FileInputStream(getImageFileNameGoal()));
         } catch (FileNotFoundException e) {
             System.out.println("There is no Goal image file");
+        }
+        try{
+            StartImage = new Image(new FileInputStream(getImageFileNameStart()));
+        } catch (FileNotFoundException e) {
+            System.out.println("There is no Start image file");
         }
         double y= maze.getGoalPosition().getRowIndex() * cellHeight;
         double x= maze.getGoalPosition().getColumnIndex() * cellWidth;
@@ -194,6 +210,13 @@ public class MazeDisplayer extends Canvas {
             graphicsContext.fillRect(x, y, cellWidth, cellHeight);
         } else
             graphicsContext.drawImage(GoalImage, x, y, cellWidth, cellHeight);
+        y= maze.getStartPosition().getRowIndex() * cellHeight;
+        x= maze.getStartPosition().getColumnIndex() * cellWidth;
+        if (StartImage == null) {
+            graphicsContext.setFill(Color.RED);
+            graphicsContext.fillRect(x, y, cellWidth, cellHeight);
+        } else
+            graphicsContext.drawImage(StartImage, x, y, cellWidth, cellHeight);
     }
 
     private void drawPlayer(GraphicsContext graphicsContext, double cellHeight, double cellWidth) {

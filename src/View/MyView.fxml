@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="531.0" prefWidth="876.4" stylesheets="@ViewStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<BorderPane fx:id="thisPane" onScroll="#MouseScrolling" prefHeight="531.0" prefWidth="876.4" stylesheets="@ViewStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
    <top>
-      <MenuBar maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER_LEFT">
+      <MenuBar fx:id="mBar" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER_LEFT">
          <menus>
             <Menu disable="true" mnemonicParsing="false" text="File" />
             <Menu mnemonicParsing="false" text="Options">
@@ -24,8 +24,9 @@
                </items></Menu>
             <Menu mnemonicParsing="false" text="About">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Open About" />
-               </items></Menu>
+                  <MenuItem mnemonicParsing="false" onAction="#OpenAbout" text="About The Game" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Exit">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#CloseEvent" text="Exit The Game" />

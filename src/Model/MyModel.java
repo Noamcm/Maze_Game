@@ -25,8 +25,8 @@ public class MyModel extends Observable implements IModel{
     //private MazeGenerator generator;
 //    public AMazeGenerator generator;
 
-    Server mazeGeneratingServer = new Server(5400, 1000, new ServerStrategyGenerateMaze());
-    Server solveSearchProblemServer = new Server(5401, 1000, new ServerStrategySolveSearchProblem());
+    Server mazeGeneratingServer;
+    Server solveSearchProblemServer;
 
 
     public MyModel() {
@@ -167,7 +167,7 @@ public class MyModel extends Observable implements IModel{
         //solve the maze
         solveSearchProblemServer.start();
         try {
-            Client client = new Client(InetAddress.getLocalHost(), 5401, new IClientStrategy() {
+            Client client = new Client(InetAddress.getLocalHost(), 5402, new IClientStrategy() {
                 @Override
                 public void clientStrategy(InputStream inFromServer, OutputStream outToServer) {
                     try {

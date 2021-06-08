@@ -10,9 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.transform.Scale;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -32,6 +36,7 @@ public class StartController extends AView {
     public ToggleButton MuteB;
     public MenuItem SaveFile;
     public static final String MEDIA_URL = "../images/backgroundVid.mp4";
+    public AnchorPane thisPane;
 
 
         @Override
@@ -51,6 +56,9 @@ public class StartController extends AView {
         media.setFitWidth(1280); //to change
         media.setSmooth(true);
         SolveB.setDisable(true);
+        thisPane.scaleXProperty().bind(myScale);
+        thisPane.scaleYProperty().bind(myScale);
+
     }
 
 
@@ -150,19 +158,20 @@ public class StartController extends AView {
         {
             public void handle(MouseEvent event)
             {
-                //System.out.println("Event on Source: "+ "x:  " +event.getScreenX() +"  Y:  " +event.getScreenY());
-                //System.out.println(mazeDisplayer.getCellWidth() +" "+ mazeDisplayer.getCellHeight());
-/*
+/*              System.out.println("Event on Source: "+ "x:  " +event.getScreenX() +"  Y:  " +event.getScreenY());
+                System.out.println(mazeDisplayer.getCellWidth() +" "+ mazeDisplayer.getCellHeight());
+
                 System.out.println("Event on Source: "+ "x:  " +event.getScreenX()/mazeDisplayer.getCellWidth() +"  Y:  " +event.getScreenY()/mazeDisplayer.getCellHeight());
                 System.out.println("Event on Source: "+ "x:  " +event.getSceneX()/mazeDisplayer.getCellWidth() +"  Y:  " +event.getSceneY()/mazeDisplayer.getCellHeight());
-*/
-                System.out.println("mouse:  " +event.getSceneX() +"  getCellWidth:  " +mazeDisplayer.getCellWidth());
 
+                System.out.println("mouse:  " +event.getSceneX() +"  getCellWidth:  " +mazeDisplayer.getCellWidth());
+                mazeDisplayer.getPlayerCol()*/
                 double indexX = ((event.getX()-mazeDisplayer.getCellWidth()/2)/mazeDisplayer.getCellWidth());
                 double indexY = ((event.getY()-mazeDisplayer.getCellHeight()/2)/mazeDisplayer.getCellHeight());
+                event.consume();
                 viewModel.DragPlayer(indexX,indexY);
                 mazeDisplayer.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                event.setDragDetect(false);
+                //event.setDragDetect(false);
             }
         });
 
@@ -208,5 +217,27 @@ public class StartController extends AView {
             }
         });*/
         }
-
+ /*   public void MouseScrolling(ScrollEvent scrollEvent) {   //ZOOM
+        double SCALE_DELTA = 1.1;
+        System.out.println("mazeDisplayer.getScaleX()  :" + mazeDisplayer.getScaleX());
+        System.out.println("mazeDisplayer.getScaleY()  :" + mazeDisplayer.getScaleY());
+        if ((scrollEvent.isControlDown())&&(mazeDisplayer.getScaleY() + SCALE_DELTA<MAX_SCALE)&&(mazeDisplayer.getScaleY() + SCALE_DELTA>MIN_SCALE)) {
+            if (scrollEvent.getDeltaY() < 0)
+                SCALE_DELTA = -1.1;
+            Scale thisScale = new Scale();
+            mazeDisplayer.setScaleX(mazeDisplayer.getScaleX() + SCALE_DELTA);
+            mazeDisplayer.setScaleY(mazeDisplayer.getScaleY() + SCALE_DELTA);
+            thisScale.setX(mazeDisplayer.getScaleX() + SCALE_DELTA);
+            thisScale.setY(mazeDisplayer.getScaleY() + SCALE_DELTA);
+            thisScale.setPivotX(mazeDisplayer.getScaleX());
+            thisScale.setPivotY(mazeDisplayer.getScaleY());
+            mazeDisplayer.getTransforms().add(thisScale);
+            scrollEvent.consume();
+        }
+        else
+            System.out.println("NO CTRL");
+    }*/
+     public void MouseScrolling(ScrollEvent event) {
+         HandleScroll(event, thisPane);
+     }
 }
