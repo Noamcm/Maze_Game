@@ -17,13 +17,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.crypto.spec.PSource;
+
 import java.io.*;
 import java.net.URL;
 
 import java.util.*;
 
-public class StartController extends AView  {
+public class StartController extends AView {
     FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Maze Files", "*.maze");
     public MazeDisplayer mazeDisplayer;
     public MediaView media;
@@ -45,6 +45,7 @@ public class StartController extends AView  {
                 mediaPlayer.play();
             }
         });
+
         media.setMediaPlayer(mediaPlayer);
         media.setFitHeight(720); //to change
         media.setFitWidth(1280); //to change
@@ -107,6 +108,13 @@ public class StartController extends AView  {
         mazeDisplayer.requestFocus();
     }
 
+    public void Mute(ActionEvent actionEvent) {
+        if(mediaPlayer.isMute())
+            mediaPlayer.setMute(false);
+        else
+            mediaPlayer.setMute(true);
+    }
+
 
     public void setOnDragDetected(MouseEvent mouseEvent) {
 /*        if (!SolveB.isDisable())
@@ -119,7 +127,7 @@ public class StartController extends AView  {
 
 
 
-        mazeDisplayer.setOnMousePressed(new EventHandler<MouseEvent>()
+/*        mazeDisplayer.setOnMousePressed(new EventHandler<MouseEvent>()
         {
             public void handle(MouseEvent event)
             {
@@ -127,14 +135,14 @@ public class StartController extends AView  {
                 System.out.println("Event on Source: mouse pressed");
                 event.setDragDetect(true);
             }
-        });
+        });*/
 
         mazeDisplayer.setOnMouseReleased(new EventHandler <MouseEvent>()
         {
             public void handle(MouseEvent event)
             {
                 mazeDisplayer.setMouseTransparent(false);
-                System.out.println("Event on Source: mouse released");
+                //System.out.println("Event on Source: mouse released");
             }
         });
 
@@ -142,17 +150,28 @@ public class StartController extends AView  {
         {
             public void handle(MouseEvent event)
             {
-                System.out.println("Event on Source: "+ "x:  " +event.getScreenX() +"Y:  " +event.getScreenY());
+                //System.out.println("Event on Source: "+ "x:  " +event.getScreenX() +"  Y:  " +event.getScreenY());
+                //System.out.println(mazeDisplayer.getCellWidth() +" "+ mazeDisplayer.getCellHeight());
+/*
+                System.out.println("Event on Source: "+ "x:  " +event.getScreenX()/mazeDisplayer.getCellWidth() +"  Y:  " +event.getScreenY()/mazeDisplayer.getCellHeight());
+                System.out.println("Event on Source: "+ "x:  " +event.getSceneX()/mazeDisplayer.getCellWidth() +"  Y:  " +event.getSceneY()/mazeDisplayer.getCellHeight());
+*/
+                System.out.println("mouse:  " +event.getSceneX() +"  getCellWidth:  " +mazeDisplayer.getCellWidth());
+
+                double indexX = ((event.getX()-mazeDisplayer.getCellWidth()/2)/mazeDisplayer.getCellWidth());
+                double indexY = ((event.getY()-mazeDisplayer.getCellHeight()/2)/mazeDisplayer.getCellHeight());
+                viewModel.DragPlayer(indexX,indexY);
+                mazeDisplayer.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol());
                 event.setDragDetect(false);
             }
         });
 
-        mazeDisplayer.setOnDragDetected(new EventHandler <MouseEvent>()
+/*        mazeDisplayer.setOnDragDetected(new EventHandler <MouseEvent>()
         {
             public void handle(MouseEvent event)
             {
                 mazeDisplayer.startFullDrag();
-                System.out.println("Event on Source: drag detected");
+                System.out.println("Event on Source: drag detected" + "x:  " +event.getScreenX() +"  Y:  " +event.getScreenY());
             }
         });
 
@@ -187,15 +206,7 @@ public class StartController extends AView  {
             {
                 System.out.println("Event on Target: mouse drag exited");
             }
-        });
+        });*/
         }
-
-    public void Mute(ActionEvent actionEvent) {
-        if(mediaPlayer.isMute())
-            mediaPlayer.setMute(false);
-        else
-            mediaPlayer.setMute(true);
-    }
-
 
 }

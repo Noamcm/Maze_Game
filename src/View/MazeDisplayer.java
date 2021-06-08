@@ -55,6 +55,10 @@ public class MazeDisplayer extends Canvas {
 
     public void setSolution(Solution solution) {
         this.solution = solution;
+        if (DrawSolution)
+            DrawSolution=false;
+        else
+            DrawSolution=true;
         draw();
     }
 
@@ -89,8 +93,8 @@ public class MazeDisplayer extends Canvas {
     }
     public void setImageFileNameGoal(String imageFileNameGoal) {this.imageFileNameGoal.set(imageFileNameGoal); }
 
-    public void drawMaze(Maze maze) {
-        this.maze = maze;
+    public void drawMaze(Maze newMaze) {
+        this.maze = newMaze;
         draw();
     }
 
@@ -117,14 +121,10 @@ public class MazeDisplayer extends Canvas {
         Image solImage = null;
         graphicsContext.setFill(Color.DARKKHAKI);
         try {
-            if (SolutionDrawn){
-                solImage = new Image(new FileInputStream(getImageFileNameRoad()));
-                SolutionDrawn=false;
-            }
-            else{
+            if (DrawSolution)
                 solImage = new Image(new FileInputStream(getImageFileNameSol()));
-                SolutionDrawn=true;
-            }
+            else
+                solImage = new Image(new FileInputStream(getImageFileNameRoad()));
         } catch (FileNotFoundException e) {
             System.out.println("There is no solution image file");
         }

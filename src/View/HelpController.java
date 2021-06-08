@@ -24,6 +24,7 @@ public class HelpController extends AView{
 
     @Override
     public void update(Observable o, Object arg) {
+
     }
 
     @Override

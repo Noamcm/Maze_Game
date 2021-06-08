@@ -174,9 +174,50 @@ public class MyViewModel extends Observable implements Observer {
         return model.getProp();
     }
 
-    public void DragPlayer(int indexX, int indexY) {
+    public void DragPlayer(double indexX, double indexY) {
         System.out.println("x: " + indexX);
         System.out.println("y: " + indexY);
+        MovementDirection direction=MovementDirection.STAY;
+        int currentrow = model.getPlayerRow();
+        int currentcol = model.getPlayerCol();
+        System.out.println("currentrow: " + currentrow);
+        System.out.println("currentcol: " + currentcol);
+        System.out.println("indexY: " + indexY);
+        System.out.println("indexX: " + indexX);
+        double deltaY = indexY-currentrow;
+        double deltaX = indexX-currentcol;
+        System.out.println("deltaX: " + deltaX);
+        System.out.println("deltaY: " + deltaY);
+        int deltaRow = (int)Math.round(deltaY);
+        int deltaCol = (int)Math.round(deltaX);
+        System.out.println("deltaCol: " + deltaCol);
+        System.out.println("deltaRow: " + deltaRow);
+        if ((deltaRow==0)&&(deltaCol!=0)) {
+            if (deltaCol > 0)
+                direction = MovementDirection.RIGHT;
+            else if (deltaCol < 0)
+                direction = MovementDirection.LEFT;
+        }
+        else if ((deltaRow!=0)&&(deltaCol==0)) {
+            if (deltaRow > 0)
+                direction = MovementDirection.DOWN;
+            else if (deltaRow < 0)
+                direction = MovementDirection.UP;
+        }
+        else if ((deltaRow>0)&&(deltaCol!=0)) {
+            if (deltaCol > 0)
+                direction = MovementDirection.DOWNRIGHT;
+            else if (deltaCol < 0)
+                direction = MovementDirection.DOWNLEFT;
+        }
+        else if ((deltaRow<0)&&(deltaCol!=0)) {
+            if (deltaCol > 0)
+                direction = MovementDirection.UPRIGHT;
+            else if (deltaCol < 0)
+                direction = MovementDirection.UPLEFT;
+        }
+        if(direction!=(MovementDirection.STAY))
+            model.updatePlayerLocation(direction);
     }
 }
 

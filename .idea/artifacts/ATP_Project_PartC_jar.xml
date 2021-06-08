@@ -2,13 +2,8 @@
   <artifact name="ATP-Project-PartC:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/ATP_Project_PartC_jar</output-path>
     <root id="root">
-      <element id="archive" name="ATP-Project-PartC.jar">
-        <element id="module-output" name="ATP-Project-PartC" />
-      </element>
-      <element id="library" level="project" name="lib1" />
       <element id="library" level="module" name="javafx-fxml" module-name="ATP-Project-PartC" />
       <element id="file-copy" path="$PROJECT_DIR$/resources/lib/ATP-Project-PartB.jar" />
-      <element id="library" level="project" name="lib" />
     </root>
   </artifact>
 </component>

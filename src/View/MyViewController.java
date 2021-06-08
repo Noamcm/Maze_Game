@@ -11,12 +11,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
+import Model.IModel;
+import Model.MyModel;
+import ViewModel.MyViewModel;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import java.net.URL;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
-public class MyViewController extends AView { //NEED TO COMPARE WITH ROTEM
+public class MyViewController extends AView{ //NEED TO COMPARE WITH ROTEM
     @FXML
     Button startB;
 
@@ -38,9 +46,6 @@ public class MyViewController extends AView { //NEED TO COMPARE WITH ROTEM
         view.setViewModel(viewModel);
         stage.show();
     }
-
-
-
 
     @Override
     public void update(Observable o, Object arg) {
