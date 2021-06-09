@@ -45,8 +45,8 @@ public class Solved extends AView {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AudioClip winning = new AudioClip(this.getClass().getResource(MEDIA_URL).toExternalForm());
         winning.play();
-        thisPane.scaleXProperty().bind(myScale);
-        thisPane.scaleYProperty().bind(myScale);
+        thisPane.scaleXProperty().bind(currScale);
+        thisPane.scaleYProperty().bind(currScale);
     }
     public void MouseScrolling(ScrollEvent event) {
         HandleScroll(event, thisPane);

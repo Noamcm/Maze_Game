@@ -56,8 +56,8 @@ public class StartController extends AView {
         media.setFitWidth(1280); //to change
         media.setSmooth(true);
         SolveB.setDisable(true);
-        thisPane.scaleXProperty().bind(myScale);
-        thisPane.scaleYProperty().bind(myScale);
+        thisPane.scaleXProperty().bind(currScale);
+        thisPane.scaleYProperty().bind(currScale);
 
     }
 

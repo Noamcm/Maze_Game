@@ -23,10 +23,9 @@ public class Main extends Application {
         MyViewController view = fxmlLoader.getController();
         view.setStage(primaryStage);
         view.setViewModel(viewModel);
-        //primaryStage.getIcons().add(new Image("../images/pawprints.png"));
         primaryStage.getIcons().add(new Image("/images/pawprints.png"));
-        primaryStage.show();
         primaryStage.setOnCloseRequest(e->view.CloseEvent());
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

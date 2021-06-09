@@ -152,7 +152,7 @@ public abstract class AView implements IView , Initializable, Observer {
         alert.setContentText("We will miss you :( ");
 
         ButtonType buttonTypeOk = new ButtonType("Yes, Bye!");
-        ButtonType buttonTypeCancel = new ButtonType("Ok, I'll Stay", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonTypeCancel = new ButtonType("Ok, I'll Stay");
 
         alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeCancel);
         Optional<ButtonType> result = alert.showAndWait();
@@ -160,71 +160,49 @@ public abstract class AView implements IView , Initializable, Observer {
             //System.out.println("Entered close function");
             Platform.exit();
             System.exit(0);
-        } else {
-            alert.close();
         }
-    }
-    public static double clamp(double value, double min, double max) {
-
-        if( Double.compare(value, min) < 0)
-            return min;
-
-        if( Double.compare(value, max) > 0)
-            return max;
-
-        return value;
+        else{
+            alert.close();}
     }
 
-
-    public void setPivot( double x, double y, Pane currentPane) {
-        currentPane.setTranslateX(currentPane.getTranslateX()-x);
-        currentPane.setTranslateY(currentPane.getTranslateY()-y);
-    }
-
-    public void setCenterPivot(Pane currentPane){
-        currentPane.setTranslateX(currentPane.getTranslateX()/50);
-        currentPane.setTranslateY(currentPane.getTranslateY()/50);
-    }
-
-    public double getScale() {
-        return myScale.get();
-    }
-
-    public void setScale( double scale, Pane currentPane) {
-        myScale.set(scale);
-    }
-
-    
     public void HandleScroll(ScrollEvent event, Pane currentPane) {
-        if(event.isControlDown()) {
-            boolean flag = false;
-            double delta = 1.2;
-
-            double scale = getScale();
-            double oldScale = scale;
+        if(event.isControlDown()) { //ctrl+scroll
+            boolean ZoomOut = false;
+            double Delta = 1.1;
+            double CurrentScale = currScale.get();
+            double oldScale = CurrentScale;
 
             if (event.getDeltaY() < 0) {
-                scale /= delta;
-                flag = true;
-            } else {
-                scale *= delta;
+                CurrentScale /= Delta;
+                ZoomOut = true;
             }
-            scale = clamp(scale, MIN_SCALE, MAX_SCALE);
+            else
+                CurrentScale *= Delta;
+            CurrentScale = this.checkZoom(CurrentScale, MinimumZoom, MaximumZoom);
 
-            double f = (scale / oldScale) - 1;
+            double ZoomRatio = (CurrentScale / oldScale)-1;
+            double deltaX = (event.getSceneX()-(currentPane.getBoundsInParent().getWidth()/2+currentPane.getBoundsInParent().getMinX()));
+            double deltaY = (event.getSceneY()-(currentPane.getBoundsInParent().getHeight()/2+currentPane.getBoundsInParent().getMinY()));
+            currScale.set(CurrentScale);
 
-            double dx = (event.getSceneX() - (currentPane.getBoundsInParent().getWidth() / 2 + currentPane.getBoundsInParent().getMinX()));
-            double dy = (event.getSceneY() - (currentPane.getBoundsInParent().getHeight() / 2 + currentPane.getBoundsInParent().getMinY()));
-
-            setScale(scale,currentPane);
-
-            if (!flag)
-                setPivot(f * dx, f * dy,currentPane);
-            else {
-                setCenterPivot(currentPane);
+            if (ZoomOut) {
+                currentPane.setTranslateX(currentPane.getTranslateX());
+                currentPane.setTranslateY(currentPane.getTranslateY());
+            }
+            else{ //ZoomIn
+                currentPane.setTranslateX(currentPane.getTranslateX()-ZoomRatio*deltaX);
+                currentPane.setTranslateY(currentPane.getTranslateY()-ZoomRatio*deltaY);
             }
             event.consume();
         }
+    }
+    public static double checkZoom(double value, double min, double max) {
+
+        if(Double.compare(value, min) < 0)
+            return min;
+        if( Double.compare(value, max) > 0)
+            return max;
+        return value;
     }
 }
 
