@@ -103,7 +103,7 @@ public abstract class AView implements IView , Initializable, Observer {
     }
 
     public void OpenHelp(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Help.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
         Parent root = null;
         try {
             root = fxmlLoader.load();
@@ -121,7 +121,7 @@ public abstract class AView implements IView , Initializable, Observer {
     }
 
     public void OpenAbout(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("About.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("About.fxml"));
         Parent root = null;
         try {
             root = fxmlLoader.load();
