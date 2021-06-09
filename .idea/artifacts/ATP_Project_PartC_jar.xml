@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ATP_Project_PartC_jar</output-path>
     <root id="root">
       <element id="library" level="module" name="javafx-fxml" module-name="ATP-Project-PartC" />
-      <element id="file-copy" path="$PROJECT_DIR$/resources/lib/ATP-Project-PartB.jar" />
     </root>
   </artifact>
 </component>

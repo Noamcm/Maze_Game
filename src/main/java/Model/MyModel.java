@@ -1,18 +1,25 @@
 package Model;
 
+import Client.Client;
+import Client.IClientStrategy;
 import IO.MyCompressorOutputStream;
 import IO.MyDecompressorInputStream;
-import Server.*;
-import Client.*;
-import java.io.*;
-import java.net.*;
-import algorithms.search.*;
-import algorithms.mazeGenerators.*;
-import javafx.geometry.Pos;
+import Server.Configurations;
+import Server.Server;
+import Server.ServerStrategyGenerateMaze;
+import Server.ServerStrategySolveSearchProblem;
+import algorithms.mazeGenerators.Maze;
+import algorithms.mazeGenerators.Position;
+import algorithms.search.Solution;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+
+import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Properties;
 
 public class MyModel extends Observable implements IModel{
     private Maze maze;
@@ -22,6 +29,7 @@ public class MyModel extends Observable implements IModel{
     private ServerStrategyGenerateMaze generator;
     private ServerStrategySolveSearchProblem solver;
     private Configurations config;
+    private static final Logger LOG = LogManager.getLogger();
     //private MazeGenerator generator;
 //    public AMazeGenerator generator;
 
@@ -59,13 +67,13 @@ public class MyModel extends Observable implements IModel{
                         maze = new Maze(decompressedMaze);
                         //maze.print();
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        LOG.error(e.getMessage());
                     }
                 }
             });
             client.communicateWithServer();
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
         setChanged();
         notifyObservers("maze generated");
@@ -178,13 +186,13 @@ public class MyModel extends Observable implements IModel{
                         toServer.flush();
                         solution = (Solution) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        LOG.error(e.getMessage());
                     }
                 }
             });
             client.communicateWithServer();
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage());
         }
         setChanged();
         notifyObservers("maze solved");

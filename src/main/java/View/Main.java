@@ -10,11 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MyView.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("SuperMaze");
         primaryStage.setScene(new Scene(root, 1280, 720));
@@ -24,7 +26,10 @@ public class Main extends Application {
         view.setStage(primaryStage);
         view.setViewModel(viewModel);
         primaryStage.getIcons().add(new Image("/images/pawprints.png"));
-        primaryStage.setOnCloseRequest(e->view.CloseEvent());
+        primaryStage.setOnCloseRequest(e->{
+                        if (!view.CloseEvent()) {
+                            e.consume();
+                        }});
         primaryStage.show();
     }
 

@@ -48,7 +48,7 @@ public class MyViewController extends AView{ //NEED TO COMPARE WITH ROTEM
     }
 
     public void handleBtnStart(ActionEvent mouseEvent)throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("starting.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("starting.fxml"));
         Parent root = fxmlLoader.load();
         //root = FXMLLoader.load(getClass().getResource("starting.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();

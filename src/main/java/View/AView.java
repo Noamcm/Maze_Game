@@ -5,28 +5,22 @@ import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Scale;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-import java.io.IOException;
 import java.util.*;
 
 
@@ -63,7 +57,7 @@ public abstract class AView implements IView , Initializable, Observer {
 
 
     public void New(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GenerateMaze.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GenerateMaze.fxml"));
         Parent root = null;
         try {
             root = fxmlLoader.load();
@@ -90,7 +84,7 @@ public abstract class AView implements IView , Initializable, Observer {
     }
 
     public void OpenProperties(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Properties.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("Properties.fxml"));
         Parent root = null;
         try {
             root = fxmlLoader.load();
@@ -144,7 +138,7 @@ public abstract class AView implements IView , Initializable, Observer {
         stage.showAndWait();
     }
 
-    public void CloseEvent() {
+    public boolean CloseEvent() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setGraphic(new ImageView(this.getClass().getResource("/images/SadDogs.png").toString()));
         alert.setTitle("Exit Confirmation");
@@ -160,9 +154,11 @@ public abstract class AView implements IView , Initializable, Observer {
             //System.out.println("Entered close function");
             Platform.exit();
             System.exit(0);
+            return true;
         }
         else{
-            alert.close();}
+            alert.close();
+            return false;}
     }
 
     public void HandleScroll(ScrollEvent event, Pane currentPane) {

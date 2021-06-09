@@ -58,7 +58,7 @@
          <center>
             <Pane fx:id="Pane" onDragDetected="#setOnDragDetected" BorderPane.alignment="CENTER">
                <children>
-                  <MazeDisplayer fx:id="mazeDisplayer" height="675" onDragDetected="#setOnDragDetected" imageFileNameStart ="./resources/images/Bed.png" imageFileNameGoal="./resources/images/JessieNoBackground.png" imageFileNamePlayer="./resources/images/MapleNoBackground.png" imageFileNameRoad="./resources/images/dirt.png" imageFileNameSol="./resources/images/darkdirt.png" imageFileNameWall="./resources/images/flower.png"  onKeyPressed="#keyPressed" width="1000" />
+                  <MazeDisplayer fx:id="mazeDisplayer" height="675" onDragDetected="#setOnDragDetected" imageFileNameStart ="src/main/resources/images/Bed.png" imageFileNameGoal="src/main/resources/images/JessieNoBackground.png" imageFileNamePlayer="src/main/resources/images/MapleNoBackground.png" imageFileNameRoad="src/main/resources/images/dirt.png" imageFileNameSol="src/main/resources/images/darkdirt.png" imageFileNameWall="src/main/resources/images/flower.png"  onKeyPressed="#keyPressed" width="1000" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
