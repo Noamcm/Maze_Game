@@ -1,0 +1,31 @@
+.root {
+    -fx-background-image: url("/images/background2.png");
+    -fx-background-size: cover;
+}
+
+Button {
+    -fx-text-fill:white ;
+    -fx-effect: dropshadow( gaussian , black , 10 , 0.1 , 4 , 4 );
+    -fx-font-size: 82px;
+    -fx-font-family: "Segoe Print";
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+Button:hover {
+    -fx-text-fill: saddlebrown ;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+}
+.toggle-button {
+    -fx-graphic: url("/images/unmuted.png");
+    -fx-background-color: rgba(0,0,0,0);
+
+}
+
+.toggle-button:selected {
+    -fx-graphic: url("/images/muted.png");
+    -fx-background-color: rgba(0,0,0,0);
+}

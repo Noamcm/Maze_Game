@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="thisPane" onScroll="#MouseScrolling" prefHeight="720.0" prefWidth="1280.0" stylesheets="@SolvedSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Solved">
+   <children>
+      <MenuBar layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu disable="true" mnemonicParsing="false" text="File" />
+            <Menu mnemonicParsing="false" text="Options">
+               <items>
+                  <MenuItem fx:id="Properties" mnemonicParsing="false" onAction="#OpenProperties" text="Properties" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#OpenHelp" text="Open Help" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="About">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#OpenAbout" text="About The Game" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Exit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#CloseEvent" text="Exit The Game" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Button fx:id="BackB" alignment="BOTTOM_CENTER" layoutX="484.0" layoutY="637.0" mnemonicParsing="false" onAction="#BackButton" text="Back To Home Page">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

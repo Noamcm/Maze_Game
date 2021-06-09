@@ -1,0 +1,9 @@
+2021.06.09 18:48:13.686 INFO  Model.MyModel - Client accepted: Client.Client@2745f785 requested to generateMaze: MyMazeGenerator
+2021.06.09 18:49:42.897 INFO  Model.MyModel - Client accepted: Client.Client@1148d72a requested to generateMaze: MyMazeGenerator in dimensions: [I@54597179
+2021.06.09 18:50:38.121 INFO  Model.MyModel - Client accepted: Client.Client@6c5bac86 requested to generateMaze: MyMazeGenerator in dimensions: {4,5}
+2021.06.09 18:53:27.014 INFO  Model.MyModel - Client accepted: Client.Client@4fce9888 requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {10,10}
+2021.06.09 18:53:28.399 INFO  Model.MyModel - Client accepted: Client.Client@45170cb3 requested to solve a maze with BestFirstSearch algorithm, solution's length is: 17
+2021.06.09 18:58:32.142 INFO  Model.MyModel - Client accepted: Client.Client@450152c6 requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {3,7}
+2021.06.09 18:58:33.317 INFO  Model.MyModel - Client accepted: Client.Client@6148a2f2 requested to solve a maze with BestFirstSearch algorithm, solution's length is: 7
+2021.06.09 19:05:09.489 INFO  Model.MyModel - Client accepted: Client.Client@71245d8c requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {2,2}
+2021.06.09 19:08:09.567 INFO  Model.MyModel - Client accepted: Client.Client@11b63c29 requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {9,9}
