@@ -1,7 +1,4 @@
-.root {
-    /*    -fx-background-image: url("../images/back2.jpg");
-        -fx-background-size: cover;*/
-}
+
 Button {
     -fx-text-fill: black;
     -fx-font-size: 24px;

@@ -24,7 +24,7 @@ import javafx.util.Duration;
 
 public class MyViewController extends AView{ //NEED TO COMPARE WITH ROTEM
 
-    private static final String MEDIA_URL = "../images/FirstSound.mp3";
+    private static final String MEDIA_URL = "/images/FirstSound.mp3";
     public Button startB;
     public ToggleButton MuteB;
     public MenuBar mBar;
@@ -48,8 +48,8 @@ public class MyViewController extends AView{ //NEED TO COMPARE WITH ROTEM
     }
 
     public void handleBtnStart(ActionEvent mouseEvent)throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("starting.fxml"));
-        Parent root = fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(); ///getClass().getResource("/starting.fxml"));//.getClassLoader()
+        Parent root = fxmlLoader.load(getClass().getResourceAsStream("/starting.fxml"));
         //root = FXMLLoader.load(getClass().getResource("starting.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         scene = new Scene(root,1280, 720);

@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("/images/HelpPicture.png");
+    -fx-background-image: url("/images/HelpPicture.jpg");
     -fx-background-size: cover;
 }
 Button {

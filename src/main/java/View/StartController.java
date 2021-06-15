@@ -32,7 +32,7 @@ public class StartController extends AView {
     public Button SolveB;
     public ToggleButton MuteB;
     public MenuItem SaveFile;
-    public static final String MEDIA_URL = "../images/backgroundVid.mp4";
+    public static final String MEDIA_URL = "/images/backgroundVid.mp4";
     public AnchorPane thisPane;
 
 
@@ -47,18 +47,14 @@ public class StartController extends AView {
                 mediaPlayer.play();
             }
         });
-
         media.setMediaPlayer(mediaPlayer);
-        media.setFitHeight(720); //to change
-        media.setFitWidth(1280); //to change
+        media.setFitHeight(thisPane.getHeight());
+        media.setFitWidth(thisPane.getWidth());
         media.setSmooth(true);
         SolveB.setDisable(true);
         thisPane.scaleXProperty().bind(currScale);
         thisPane.scaleYProperty().bind(currScale);
-
     }
-
-
 
     @Override
     public void update(Observable o, Object arg) {
@@ -67,6 +63,7 @@ public class StartController extends AView {
             case "maze generated" -> mazeGenerated();
             case "player moved" -> playerMoved();
             case "maze solved" -> mazeSolved();
+            case "goal reached" -> goalReached();
             default -> System.out.println("Not implemented change: " + change);
         }
     }
@@ -122,32 +119,11 @@ public class StartController extends AView {
 
 
     public void setOnDragDetected(MouseEvent mouseEvent) {
-/*        if (!SolveB.isDisable())
-        {
-            int indexX = (int)(mouseEvent.getX()/mazeDisplayer.getCellWidth());
-            int indexY = (int)(mouseEvent.getY()/mazeDisplayer.getCellHeight());
-            viewModel.DragPlayer(indexX,indexY);
-            mazeDisplayer.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol());
-        }*/
-
-
-
-/*        mazeDisplayer.setOnMousePressed(new EventHandler<MouseEvent>()
-        {
-            public void handle(MouseEvent event)
-            {
-                mazeDisplayer.setMouseTransparent(true);
-                System.out.println("Event on Source: mouse pressed");
-                event.setDragDetect(true);
-            }
-        });*/
-
         mazeDisplayer.setOnMouseReleased(new EventHandler <MouseEvent>()
         {
             public void handle(MouseEvent event)
             {
                 mazeDisplayer.setMouseTransparent(false);
-                //System.out.println("Event on Source: mouse released");
             }
         });
 
@@ -155,85 +131,15 @@ public class StartController extends AView {
         {
             public void handle(MouseEvent event)
             {
-/*              System.out.println("Event on Source: "+ "x:  " +event.getScreenX() +"  Y:  " +event.getScreenY());
-                System.out.println(mazeDisplayer.getCellWidth() +" "+ mazeDisplayer.getCellHeight());
-
-                System.out.println("Event on Source: "+ "x:  " +event.getScreenX()/mazeDisplayer.getCellWidth() +"  Y:  " +event.getScreenY()/mazeDisplayer.getCellHeight());
-                System.out.println("Event on Source: "+ "x:  " +event.getSceneX()/mazeDisplayer.getCellWidth() +"  Y:  " +event.getSceneY()/mazeDisplayer.getCellHeight());
-
-                System.out.println("mouse:  " +event.getSceneX() +"  getCellWidth:  " +mazeDisplayer.getCellWidth());
-                mazeDisplayer.getPlayerCol()*/
                 double indexX = ((event.getX()-mazeDisplayer.getCellWidth()/2)/mazeDisplayer.getCellWidth());
                 double indexY = ((event.getY()-mazeDisplayer.getCellHeight()/2)/mazeDisplayer.getCellHeight());
                 event.consume();
                 viewModel.DragPlayer(indexX,indexY);
                 mazeDisplayer.setPlayerPosition(viewModel.getPlayerRow(), viewModel.getPlayerCol());
-                //event.setDragDetect(false);
             }
         });
+    }
 
-/*        mazeDisplayer.setOnDragDetected(new EventHandler <MouseEvent>()
-        {
-            public void handle(MouseEvent event)
-            {
-                mazeDisplayer.startFullDrag();
-                System.out.println("Event on Source: drag detected" + "x:  " +event.getScreenX() +"  Y:  " +event.getScreenY());
-            }
-        });
-
-        // Add mouse event handlers for the target
-        mazeDisplayer.setOnMouseDragEntered(new EventHandler <MouseDragEvent>()
-        {
-            public void handle(MouseDragEvent event)
-            {
-                System.out.println("Event on Target: mouse dragged");
-            }
-        });
-
-        mazeDisplayer.setOnMouseDragOver(new EventHandler <MouseDragEvent>()
-        {
-            public void handle(MouseDragEvent event)
-            {
-                System.out.println("Event on Target: mouse drag over");
-            }
-        });
-
-        mazeDisplayer.setOnMouseDragReleased(new EventHandler <MouseDragEvent>()
-        {
-            public void handle(MouseDragEvent event)
-            {
-                System.out.println("Event on Target: mouse drag released");
-            }
-        });
-
-        mazeDisplayer.setOnMouseDragExited(new EventHandler <MouseDragEvent>()
-        {
-            public void handle(MouseDragEvent event)
-            {
-                System.out.println("Event on Target: mouse drag exited");
-            }
-        });*/
-        }
- /*   public void MouseScrolling(ScrollEvent scrollEvent) {   //ZOOM
-        double SCALE_DELTA = 1.1;
-        System.out.println("mazeDisplayer.getScaleX()  :" + mazeDisplayer.getScaleX());
-        System.out.println("mazeDisplayer.getScaleY()  :" + mazeDisplayer.getScaleY());
-        if ((scrollEvent.isControlDown())&&(mazeDisplayer.getScaleY() + SCALE_DELTA<MAX_SCALE)&&(mazeDisplayer.getScaleY() + SCALE_DELTA>MIN_SCALE)) {
-            if (scrollEvent.getDeltaY() < 0)
-                SCALE_DELTA = -1.1;
-            Scale thisScale = new Scale();
-            mazeDisplayer.setScaleX(mazeDisplayer.getScaleX() + SCALE_DELTA);
-            mazeDisplayer.setScaleY(mazeDisplayer.getScaleY() + SCALE_DELTA);
-            thisScale.setX(mazeDisplayer.getScaleX() + SCALE_DELTA);
-            thisScale.setY(mazeDisplayer.getScaleY() + SCALE_DELTA);
-            thisScale.setPivotX(mazeDisplayer.getScaleX());
-            thisScale.setPivotY(mazeDisplayer.getScaleY());
-            mazeDisplayer.getTransforms().add(thisScale);
-            scrollEvent.consume();
-        }
-        else
-            System.out.println("NO CTRL");
-    }*/
      public void MouseScrolling(ScrollEvent event) {
          HandleScroll(event, thisPane);
      }

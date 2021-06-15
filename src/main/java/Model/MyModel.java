@@ -32,13 +32,12 @@ public class MyModel extends Observable implements IModel{
     private static final Logger LOG = LogManager.getLogger();
     //private MazeGenerator generator;
 //    public AMazeGenerator generator;
-
-    Server mazeGeneratingServer;
-    Server solveSearchProblemServer;
-
+    Server mazeGeneratingServer = new Server(5400, 1000, new ServerStrategyGenerateMaze());
+    Server solveSearchProblemServer = new Server(5402, 1000, new ServerStrategySolveSearchProblem());
 
     public MyModel() {
         generator = new ServerStrategyGenerateMaze();
+
     }
 
     @Override
@@ -48,6 +47,7 @@ public class MyModel extends Observable implements IModel{
 
     @Override
     public void generateMaze(int rows, int cols) {
+        mazeGeneratingServer = new Server(5400, 1000, new ServerStrategyGenerateMaze());
         mazeGeneratingServer.start();
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5400, new  IClientStrategy() {
@@ -72,6 +72,9 @@ public class MyModel extends Observable implements IModel{
                 }
             });
             client.communicateWithServer();
+            //LOG.info("TEST");
+            LOG.info("Client accepted: " + client.toString() + " requested to generate a maze with " + config.readMazeGeneratingAlgorithm() +" algorithm, in dimensions: {"+ maze.getDimensions()[0]+","+ maze.getDimensions()[1]+"}");
+
         } catch (UnknownHostException e) {
             LOG.error(e.getMessage());
         }
@@ -79,6 +82,7 @@ public class MyModel extends Observable implements IModel{
         notifyObservers("maze generated");
         // start position:
         movePlayer(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex());
+        mazeGeneratingServer.stop();
     }
 
     @Override
@@ -173,6 +177,7 @@ public class MyModel extends Observable implements IModel{
     @Override
     public void solveMaze() {
         //solve the maze
+        solveSearchProblemServer = new Server(5402, 1000, new ServerStrategySolveSearchProblem());
         solveSearchProblemServer.start();
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5402, new IClientStrategy() {
@@ -191,11 +196,13 @@ public class MyModel extends Observable implements IModel{
                 }
             });
             client.communicateWithServer();
+            LOG.info("Client accepted: " + client.toString() + " requested to solve a maze with " + config.readMazeSearchingAlgorithm() +" algorithm, solution's length is: "+solution.getSolutionPath().size());
         } catch (UnknownHostException e) {
             LOG.error(e.getMessage());
         }
         setChanged();
         notifyObservers("maze solved");
+        solveSearchProblemServer.stop();
     }
 
     @Override

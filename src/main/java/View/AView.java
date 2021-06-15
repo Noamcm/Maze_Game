@@ -35,9 +35,9 @@ public abstract class AView implements IView , Initializable, Observer {
     private boolean CtrlPressed = false;
     protected Group plot = new Group();
     protected static final double ZOOM_FACTOR = 1.2;
-    final double MAX_SCALE = 10.0;
-    final double MIN_SCALE = 0.7;
-    DoubleProperty myScale = new SimpleDoubleProperty(1.0);
+    final double MaximumZoom = 10.0;
+    final double MinimumZoom = 0.7;
+    DoubleProperty currScale = new SimpleDoubleProperty(1.0);
 
     public void setViewModel(MyViewModel viewModel) {
         this.viewModel = viewModel;

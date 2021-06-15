@@ -15,7 +15,7 @@ import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class Solved extends AView {
-    private static final String MEDIA_URL = "../images/SolvedSound.mp3";
+    private static final String MEDIA_URL = "/images/SolvedSound.mp3";
     public Button BackB;
     public AnchorPane thisPane;
 

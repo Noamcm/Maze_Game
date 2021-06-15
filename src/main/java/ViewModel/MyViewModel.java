@@ -4,7 +4,6 @@ import Model.IModel;
 import Model.MovementDirection;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
-import com.sun.javafx.css.FontFaceImpl;
 import javafx.scene.control.Alert;
 import javafx.scene.input.*;
 
@@ -76,7 +75,7 @@ public class MyViewModel extends Observable implements Observer {
     public void movePlayer(KeyEvent keyEvent){
         MovementDirection direction;
         switch (keyEvent.getCode()){
-            case UP:{
+/*            case UP:{
                 direction = MovementDirection.UP;
                 break;
             }
@@ -95,7 +94,7 @@ public class MyViewModel extends Observable implements Observer {
             case NUMPAD9: {
                 direction = MovementDirection.UPRIGHT;
                 break;
-            }
+            }*/
             case NUMPAD7: {
                 direction = MovementDirection.UPLEFT;
                 break;
@@ -133,9 +132,6 @@ public class MyViewModel extends Observable implements Observer {
     }
 
     public void solveMaze(){
-/*        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Solving maze...");
-        alert.show();*/
         model.solveMaze();
     }
 
@@ -175,23 +171,13 @@ public class MyViewModel extends Observable implements Observer {
     }
 
     public void DragPlayer(double indexX, double indexY) {
-//        System.out.println("x: " + indexX);
-//        System.out.println("y: " + indexY);
         MovementDirection direction=MovementDirection.STAY;
         int currentrow = model.getPlayerRow();
         int currentcol = model.getPlayerCol();
-//        System.out.println("currentrow: " + currentrow);
-//        System.out.println("currentcol: " + currentcol);
-//        System.out.println("indexY: " + indexY);
-//        System.out.println("indexX: " + indexX);
         double deltaY = indexY-currentrow;
         double deltaX = indexX-currentcol;
-//        System.out.println("deltaX: " + deltaX);
-//        System.out.println("deltaY: " + deltaY);
         int deltaRow = (int)Math.round(deltaY);
         int deltaCol = (int)Math.round(deltaX);
-//        System.out.println("deltaCol: " + deltaCol);
-//        System.out.println("deltaRow: " + deltaRow);
         if ((deltaRow==0)&&(deltaCol!=0)) {
             if (deltaCol > 0)
                 direction = MovementDirection.RIGHT;
