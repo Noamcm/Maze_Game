@@ -15,11 +15,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+import javax.security.auth.login.Configuration;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Properties;
 
 public class MyModel extends Observable implements IModel{
     private Maze maze;
@@ -28,15 +30,17 @@ public class MyModel extends Observable implements IModel{
     private Solution solution;
     private ServerStrategyGenerateMaze generator;
     private ServerStrategySolveSearchProblem solver;
-    private Configurations config;
-    private static final Logger LOG = LogManager.getLogger();
+    private Configurations config=Configurations.getInstance();
+    private static final Logger LOG = LogManager.getRootLogger();
     //private MazeGenerator generator;
 //    public AMazeGenerator generator;
     Server mazeGeneratingServer = new Server(5400, 1000, new ServerStrategyGenerateMaze());
     Server solveSearchProblemServer = new Server(5402, 1000, new ServerStrategySolveSearchProblem());
 
     public MyModel() {
-        generator = new ServerStrategyGenerateMaze();
+            config.SetConfigPath("/resources/config.properties");
+            //config.getProperties().load(getClass().getResourceAsStream("./resources/config.properties"));
+            generator = new ServerStrategyGenerateMaze();
 
     }
 

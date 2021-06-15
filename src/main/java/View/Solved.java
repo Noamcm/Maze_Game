@@ -21,8 +21,8 @@ public class Solved extends AView {
 
 
     public void BackButton(ActionEvent mouseEvent)throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MyView.fxml"));
-        Parent root = fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader();//getClass().getClassLoader().getResource("MyView.fxml"));
+        Parent root = fxmlLoader.load(getClass().getResourceAsStream("/MyView.fxml"));
         stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         scene = new Scene(root,1280, 720);
         stage.setScene(scene);

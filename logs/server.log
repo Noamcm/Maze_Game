@@ -7,3 +7,8 @@
 2021.06.09 18:58:33.317 INFO  Model.MyModel - Client accepted: Client.Client@6148a2f2 requested to solve a maze with BestFirstSearch algorithm, solution's length is: 7
 2021.06.09 19:05:09.489 INFO  Model.MyModel - Client accepted: Client.Client@71245d8c requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {2,2}
 2021.06.09 19:08:09.567 INFO  Model.MyModel - Client accepted: Client.Client@11b63c29 requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {9,9}
+2021.06.15 13:38:56.400 INFO  Model.MyModel - Client accepted: Client.Client@771f0a4b requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {4,5}
+2021.06.15 13:41:19.351 INFO  Model.MyModel - Client accepted: Client.Client@5faa445d requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {4,6}
+2021.06.15 15:45:29.551 INFO   - Client accepted: Client.Client@6e06b1db requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {3,5}
+2021.06.15 18:18:13.804 INFO   - Client accepted: Client.Client@11157385 requested to generate a maze with MyMazeGenerator algorithm, in dimensions: {3,4}
+2021.06.15 18:18:36.475 INFO   - Client accepted: Client.Client@1eee8db2 requested to generate a maze with EmptyMazeGenerator algorithm, in dimensions: {7,7}

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="thisPane" onScroll="#MouseScrolling" prefHeight="720.0" prefWidth="1280.0" stylesheets="@SolvedSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Solved">
+<AnchorPane fx:id="thisPane" onScroll="#MouseScrolling" prefHeight="720.0" prefWidth="1280.0" stylesheets="@/SolvedSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Solved">
    <children>
       <MenuBar layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <menus>

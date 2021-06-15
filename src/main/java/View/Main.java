@@ -16,8 +16,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("MyView.fxml"));
-        Parent root = fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader();//getClass().getClassLoader().getResource("MyView.fxml"));
+        Parent root = fxmlLoader.load(getClass().getResourceAsStream("/MyView.fxml"));
         primaryStage.setTitle("SuperMaze");
         primaryStage.setScene(new Scene(root, 1280, 720));
         IModel model = new MyModel();

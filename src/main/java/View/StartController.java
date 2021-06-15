@@ -70,10 +70,10 @@ public class StartController extends AView {
 
     private void goalReached() {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("Solved.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();//getClass().getClassLoader().getResource("Solved.fxml"));
         Parent root = null;
         try {
-            root = fxmlLoader.load();
+            root = fxmlLoader.load(getClass().getResourceAsStream("/Solved.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

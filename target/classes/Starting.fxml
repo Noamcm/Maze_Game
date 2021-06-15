@@ -16,10 +16,10 @@
 
 <!-- -<!- -->
 
-<AnchorPane fx:id="thisPane" onScroll="#MouseScrolling" prefHeight="720" prefWidth="1080.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@StartStyleSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.StartController">
+<AnchorPane fx:id="thisPane" onScroll="#MouseScrolling" prefHeight="720" prefWidth="1080.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@/StartStyleSheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.StartController">
    <children>
       <MediaView fx:id="media" fitHeight="720.0" fitWidth="1080.0" AnchorPane.bottomAnchor="0.0" />
-      <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClicked" stylesheets="@StartStyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="10.0" layoutY="10.0" onMouseClicked="#mouseClicked" stylesheets="@/StartStyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <MenuBar prefHeight="0.0" prefWidth="518.0" BorderPane.alignment="CENTER">
                <menus>

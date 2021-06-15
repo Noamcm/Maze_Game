@@ -57,10 +57,10 @@ public abstract class AView implements IView , Initializable, Observer {
 
 
     public void New(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GenerateMaze.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();//getClass().getClassLoader().getResource("GenerateMaze.fxml"));
         Parent root = null;
         try {
-            root = fxmlLoader.load();
+            root = fxmlLoader.load(getClass().getResourceAsStream("/GenerateMaze.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,10 +84,10 @@ public abstract class AView implements IView , Initializable, Observer {
     }
 
     public void OpenProperties(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("Properties.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();//getClass().getClassLoader().getResource("Properties.fxml"));
         Parent root = null;
         try {
-            root = fxmlLoader.load();
+            root = fxmlLoader.load(getClass().getResourceAsStream("/Properties.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,10 +103,10 @@ public abstract class AView implements IView , Initializable, Observer {
     }
 
     public void OpenHelp(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();//getClass().getClassLoader().getResource("Help.fxml"));
         Parent root = null;
         try {
-            root = fxmlLoader.load();
+            root = fxmlLoader.load(getClass().getResourceAsStream("/Help.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -121,10 +121,10 @@ public abstract class AView implements IView , Initializable, Observer {
     }
 
     public void OpenAbout(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("About.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();//getClass().getClassLoader().getResource("About.fxml"));
         Parent root = null;
         try {
-            root = fxmlLoader.load();
+            root = fxmlLoader.load(getClass().getResourceAsStream("/About.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
